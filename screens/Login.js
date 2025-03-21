@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { StyleSheet,View,Text, TextInput} from 'react-native';
+import { StyleSheet,View,Text, TextInput, TouchableOpacity} from 'react-native';
 import { Image } from 'react-native';
 
 export default function Login(){
@@ -15,11 +15,16 @@ export default function Login(){
                 <Text style={styles.textit}>Inicio de Sesión</Text>
             </View>
             <View style={styles.card}>
-                <View style={styles.cajatext}>
+                <View style={styles.cajatexto}>
                     <TextInput placeholder="Usuario o Correo" style={{paddingHorizontal:15}} />
                 </View>
-                <View style={styles.cajatext}>
+                <View style={styles.cajatexto}>
                     <TextInput placeholder="Contraseña" style={{paddingHorizontal:15}} />
+                </View>
+                <View style={styles.padrebutton}>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.textbutton}>Iniciar Sesión</Text>
+                        </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -59,4 +64,25 @@ const styles = StyleSheet.create ({
     textit: {
         fontSize: 24,
         color: 'purple',
-}})
+},
+    cajatexto: {
+    paddingVertical: 20,
+    backgroundColor: '#cccccc40',
+    borderRadius:30,
+    marginVertical:10
+},
+    padrebutton: {
+        alignItems:'center',
+    },
+    button: {
+        backgroundColor: 'purple',
+        borderRadius:30,
+        paddingVertical:20,
+        width:150,
+        marginTop:20
+    },
+    textbutton:{
+        textAlign:'center',
+        color:'white'
+    }
+})
