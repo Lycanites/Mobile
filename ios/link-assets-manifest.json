@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "screens/Assets/fonts/CreamBeige.ttf",
+      "sha1": "0acaf688fce472ef1f44c58d45881c22d9bc2b53"
+    },
+    {
+      "path": "screens/Assets/fonts/MaryKate.ttf",
+      "sha1": "0c30a0e2d6af70d09714ccf40dac3428922d7bc1"
+    }
+  ]
+}
