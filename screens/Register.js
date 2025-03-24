@@ -13,23 +13,29 @@ export default function Login(){
                 <Image source={require('../Assets/img/Logo.jpeg')} style={styles.profile} />
             </View>
             <View>
-                <Text style={styles.textit}>Inicio de Sesión</Text>
+                <Text style={styles.textit}>Registro de Usuario</Text>
             </View>
             <View style={styles.card}>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Usuario o Correo" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Nombre de Usuario" style={{paddingHorizontal:15}} />
+                </View>
+                <View style={styles.cajatexto}>
+                    <TextInput placeholder="Email" style={{paddingHorizontal:15}} />
                 </View>
                 <View style={styles.cajatexto}>
                     <TextInput placeholder="Contraseña" style={{paddingHorizontal:15}} />
                 </View>
-                <View style={styles.padrebutton}>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.textbutton}>Iniciar Sesión</Text>
-                        </TouchableOpacity>
+                <View style={styles.cajatexto}>
+                    <TextInput placeholder="Confirmar Contraseña" style={{paddingHorizontal:15}} />
                 </View>
                 <View style={styles.padrebutton}>
                     <TouchableOpacity style={styles.button2}>
                         <Text style={styles.textbutton2}>Registrarse</Text>
+                        </TouchableOpacity>
+                </View>
+                <View style={styles.padrebutton}>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.textbutton}>Inicio de Sesión</Text>
                         </TouchableOpacity>
                 </View>
             </View>
