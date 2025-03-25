@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { StyleSheet,View,Text } from 'react-native';
+import { SafeAreaView,StyleSheet,View,Text, Image } from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView} from "@react-navigation/drawer";
-import Inicio from "./Inicio";
+import Inicio from "./Settings";
 import Areas from "./Areas";
 import Juegos from "./Juegos";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 const Drawer = createDrawerNavigator()
@@ -11,12 +12,17 @@ const Drawer = createDrawerNavigator()
 export default function Menu(){
 {
     return (
-       <Drawer.Navigator
-       drawerContent={ (props) => <MenuItems {...props} />}>
-        <Drawer.Screen  name="Inicio" component={ Inicio }/>
-        <Drawer.Screen  name="Areas" component={ Areas }/>
-        <Drawer.Screen  name="Jugar" component={ Juegos }/>
-       </Drawer.Navigator>
+
+        <SafeAreaView style={styles.container}>
+            <View style={{justifyContent: 'flex-start'}}>
+            <Image source={require('../Assets/img/Logo.jpeg')} style={{
+                flex:1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                resizeMode: 'cover',
+            }}/>
+            </View>
+        </SafeAreaView>
     )
 }
 }
@@ -30,5 +36,10 @@ const MenuItems = ( navigation ) => {
 }
 
 const styles = StyleSheet.create ({
-
+    container:{
+        flex:1,
+        backgroundColor:'white',
+        alignItems:'center',
+        justifyContent:'center'
+    },
 })

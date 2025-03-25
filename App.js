@@ -17,6 +17,13 @@ export default function App() {
   function MyStack() {
     return(
      <Stack.Navigator>
+        <Stack.Screen name='Menu' component={Menu} 
+        options={{
+          title:'',
+          headerTintColor:'black',
+          headerTitleAlign:'center',
+          headerStyle:{backgroundColor:'black'}
+        }}/>
        <Stack.Screen name='Login' component={Login}
       options={{
         title:'LOGIN',
@@ -31,7 +38,6 @@ export default function App() {
         headerTitleAlign:'center',
         headerStyle:{backgroundColor:'purple'}
       }}/>
-      <Stack.Screen name='Menu' component={Menu} />
      </Stack.Navigator>
     )
   }
