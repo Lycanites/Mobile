@@ -68,6 +68,7 @@ const styles = StyleSheet.create ({
         elevation:5
     },
     textit: {
+        fontFamily: 'CreamBeige',
         fontSize: 24,
         color: 'purple',
     },

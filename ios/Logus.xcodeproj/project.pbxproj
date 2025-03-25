@@ -11,8 +11,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		3C06C24A6E5F42DFA8115D19 /* CreamBeige.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B65BD476DC343D99A7A9486 /* CreamBeige.ttf */; };
-		3EA55FA20DE1492E83E2E8F8 /* MaryKate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F5DFB5EF9C44A168C94EB97 /* MaryKate.ttf */; };
+		AF5256E1601444F4B233B872 /* CreamBeige.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3FC6BB181E5490BB6D65C16 /* CreamBeige.ttf */; };
+		008B7F0B234F4843991555D9 /* MaryKate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F5C1843F394645BB9B3AFD /* MaryKate.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,8 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Logus/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Logus/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		9B65BD476DC343D99A7A9486 /* CreamBeige.ttf */ = {isa = PBXFileReference; name = "CreamBeige.ttf"; path = "../screens/Assets/fonts/CreamBeige.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2F5DFB5EF9C44A168C94EB97 /* MaryKate.ttf */ = {isa = PBXFileReference; name = "MaryKate.ttf"; path = "../screens/Assets/fonts/MaryKate.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D3FC6BB181E5490BB6D65C16 /* CreamBeige.ttf */ = {isa = PBXFileReference; name = "CreamBeige.ttf"; path = "../assets/fonts/CreamBeige.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		23F5C1843F394645BB9B3AFD /* MaryKate.ttf */ = {isa = PBXFileReference; name = "MaryKate.ttf"; path = "../assets/fonts/MaryKate.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +124,8 @@
 		840C13282F494C82B68DB343 /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				9B65BD476DC343D99A7A9486 /* CreamBeige.ttf */,
-				2F5DFB5EF9C44A168C94EB97 /* MaryKate.ttf */,
+				D3FC6BB181E5490BB6D65C16 /* CreamBeige.ttf */,
+				23F5C1843F394645BB9B3AFD /* MaryKate.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -200,8 +200,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				3C06C24A6E5F42DFA8115D19 /* CreamBeige.ttf in Resources */,
-				3EA55FA20DE1492E83E2E8F8 /* MaryKate.ttf in Resources */,
+				AF5256E1601444F4B233B872 /* CreamBeige.ttf in Resources */,
+				008B7F0B234F4843991555D9 /* MaryKate.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
