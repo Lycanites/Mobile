@@ -17,21 +17,21 @@ export default function App() {
   function MyStack() {
     return(
      <Stack.Navigator>
-        <Stack.Screen name='Menu' component={Menu} 
+      <Stack.Screen name='Menu' component={Menu} 
         options={{
           title:'',
           headerTintColor:'black',
           headerTitleAlign:'center',
           headerStyle:{backgroundColor:'black'}
         }}/>
-       <Stack.Screen name='Login' component={Login}
+          <Stack.Screen name='Login' component={Login}
       options={{
         title:'LOGIN',
         headerTintColor:'white',
         headerTitleAlign:'center',
         headerStyle:{backgroundColor:'purple'}
       }}/>
-        <Stack.Screen name='Register' component={Register}
+       <Stack.Screen name='Register' component={Register}
       options={{
         title:'LOGIN',
         headerTintColor:'white',
