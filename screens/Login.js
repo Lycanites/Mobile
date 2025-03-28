@@ -1,12 +1,16 @@
 import { Component } from "react";
 import { StyleSheet,View,Text, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { Image } from 'react-native';
+import Register from '../screens/Register'
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login(){
 
+    const navigation = useNavigation(); 
+    
     {
     return (
-
+        
         <View style={styles.padre}>
             
             <View>
@@ -28,7 +32,11 @@ export default function Login(){
                         </TouchableOpacity>
                 </View>
                 <View style={styles.padrebutton}>
-                    <TouchableOpacity style={styles.button2}>
+                    <TouchableOpacity style={styles.button2}
+                    onPress= { () => navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'Register' }], 
+                      }) }>
                         <Text style={styles.textbutton2}>Registrarse</Text>
                         </TouchableOpacity>
                 </View>

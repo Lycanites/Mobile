@@ -35,7 +35,6 @@ export default function App() {
       }}/>
        <Stack.Screen name='Register' component={Register}
       options={{
-        headerShown: false,
         title:'LOGIN',
         headerTintColor:'white',
         headerTitleAlign:'center',

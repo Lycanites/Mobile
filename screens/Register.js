@@ -1,8 +1,11 @@
 import { Component } from "react";
 import { StyleSheet,View,Text, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { Image } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login(){
+
+    const navigation = useNavigation(); 
 
     {
     return (
@@ -34,7 +37,11 @@ export default function Login(){
                         </TouchableOpacity>
                 </View>
                 <View style={styles.padrebutton}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button}
+                    onPress= { () => navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'Login' }], 
+                      }) }>
                         <Text style={styles.textbutton}>Inicio de Sesión</Text>
                         </TouchableOpacity>
                 </View>
@@ -87,7 +94,7 @@ const styles = StyleSheet.create ({
         alignItems:'center',
     },
     button: {
-        backgroundColor: 'purple',
+        backgroundColor: '#996ee5',
         borderRadius:30,
         paddingVertical:20,
         width:150,

@@ -5,11 +5,11 @@ import { View, Text, Touchable, TouchableOpacity, StyleSheet, Image} from 'react
 const MenuButtonItem = ({ text, onPress, salida, image, style, ...props }) => {
     return(
       <TouchableOpacity
-        style={[styles.buttonContainer, salida && styles.salida, styles.img, style]}
+        style={[styles.buttonContainer, salida && styles.salida, style]}
         onPress={onPress}
         {...props}
       > 
-       <Image source={image} style={styles.icon} />
+       <Image source={image} style={styles.img} />
         <Text style={styles.texto}>{text}</Text>
       </TouchableOpacity>
     )
@@ -22,19 +22,23 @@ const styles = StyleSheet.create ({
         borderRadius:23,
     },
     buttonContainer:{
+        alignItems:'center',
         backgroundColor:'#996ee5',
         borderRadius:10,
+        flexDirection:'row',
         marginBottom:15,
-        padding:20,
+        padding:15,
     },
     salida:{
+      alignItems:'center',
         backgroundColor:'#ac2774',
         borderRadius:10,
         marginBottom:15,
-        padding:20,
+        padding:15,
     },
     texto:{
-        color:'white'
+        color:'white',
+        marginStart:10
     }
 })
 

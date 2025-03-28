@@ -18,6 +18,7 @@ export default function Menu(){
   screenOptions={{
     headerStyle: { backgroundColor: '#34008f' }, 
     headerTintColor: 'white', 
+    headerTitleAlign: 'center'
   }}
   drawerContent={(props) => <MenuItems {...props} />}
 >
@@ -25,50 +26,69 @@ export default function Menu(){
   <Drawer.Screen name="Areas" component={Areas} />
   <Drawer.Screen name="Ajustes" component={Settings} />
   <Drawer.Screen name="Juegos" component={Juegos} />
-  <Drawer.Screen name="Salir de Logus" component={Login} />
+  <Drawer.Screen name="Salir de Logus" component={Login} options={{
+    drawerLockMode: 'locked-closed'}} />
 </Drawer.Navigator>
 
     )
 }
 }
 
-const MenuItems = ( navigation ) => {
+const MenuItems = ({ navigation }) => {
     return (
      <DrawerContentScrollView
         style={styles.container}>
-            <Text style={styles.title}>Mi menu</Text>
+            <Text style={styles.title}>Menú</Text>
+            <View style={ styles.menuContainer }>
             <MenuButtonItem
             text='Perfil'
             onPress= { () => navigation.navigate('Perfil') }
-            Image={require('../../Assets/img/Perfil.png')}
+            image={require('../Assets/img/Perfil.png')}
             />
               <MenuButtonItem 
             text='Áreas'
             onPress= { () => navigation.navigate('Areas') }
-            Image={require('../../Assets/img/Areas.png')}
+            image={require('../Assets/img/Areas.png')}
             />
               <MenuButtonItem 
             text='Ajustes'
             onPress= { () => navigation.navigate('Ajustes') }
-            Image={require('../../Assets/img/Ajustes.png')}
+            image={require('../Assets/img/Ajustes.png')}
             />
               <MenuButtonItem 
             text='Juegos'
             onPress= { () => navigation.navigate('Juegos') }
-            Image={require('../../Assets/img/Juegos.png')}
+            image={require('../Assets/img/Juegos.png')}
             />
+            </View>
+            <View style={ styles.logout }>
             <MenuButtonItem 
             salida
             text='Salir de Logus'
-            onPress= { () => navigation.navigate('Login') }
-            Image={require('../../Assets/img/Salida.png')}
+            onPress= { () => navigation.reset({
+              index: 0,
+              routes: [{ name: 'Login' }], 
+            }) }
+            image={require('../Assets/img/Salida.png')}
             />
+            </View>
         </DrawerContentScrollView>
     )
 }
 
 const styles = StyleSheet.create ({
+    menuContainer: {
+      flexGrow: 1,
+    },
+
+    logout:{
+      marginTop: 'auto',
+      marginBottom: 20,
+      
+    },
+
     container:{
+        flexGrow:1,
         padding: 15,
         backgroundColor:'#34008f'
     },
@@ -81,4 +101,4 @@ const styles = StyleSheet.create ({
     }
 
     
-})
+}) 
