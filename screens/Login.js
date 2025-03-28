@@ -70,7 +70,7 @@ const styles = StyleSheet.create ({
     textit: {
         fontFamily: 'CreamBeige',
         fontSize: 24,
-        color: 'purple',
+        color: '#34008f',
     },
     cajatexto: {
         paddingVertical: 20,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create ({
         alignItems:'center',
     },
     button: {
-        backgroundColor: 'purple',
+        backgroundColor: '#996ee5',
         borderRadius:30,
         paddingVertical:20,
         width:150,

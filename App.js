@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/Login';
 import Menu from './screens/Menu';
 import Register from './screens/Register';
+import Perfil from './screens/Perfil';
 
 
 
@@ -17,26 +18,28 @@ export default function App() {
   function MyStack() {
     return(
      <Stack.Navigator>
-      <Stack.Screen name='Menu' component={Menu} 
+        <Stack.Screen name='Menu' component={Menu} 
         options={{
-          title:'',
-          headerTintColor:'black',
+          headerShown: false,
+          title:'Logus',
+          headerTintColor:'white',
           headerTitleAlign:'center',
-          headerStyle:{backgroundColor:'black'}
+          headerStyle:{backgroundColor:'#34008f'}
         }}/>
-          <Stack.Screen name='Login' component={Login}
+        <Stack.Screen name='Login' component={Login}
       options={{
         title:'LOGIN',
         headerTintColor:'white',
         headerTitleAlign:'center',
-        headerStyle:{backgroundColor:'purple'}
+        headerStyle:{backgroundColor:'#34008f'}
       }}/>
        <Stack.Screen name='Register' component={Register}
       options={{
+        headerShown: false,
         title:'LOGIN',
         headerTintColor:'white',
         headerTitleAlign:'center',
-        headerStyle:{backgroundColor:'purple'}
+        headerStyle:{backgroundColor:'#34008f'}
       }}/>
      </Stack.Navigator>
     )
