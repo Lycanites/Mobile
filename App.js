@@ -12,6 +12,7 @@ import Perfil from './screens/Perfil';
 
 
 export default function App() {
+  
 
   const Stack = createStackNavigator()
   

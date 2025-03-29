@@ -22,8 +22,8 @@ export default function Menu(){
   }}
   drawerContent={(props) => <MenuItems {...props} />}
 >
-  <Drawer.Screen name="Perfil" component={Perfil} />
   <Drawer.Screen name="Areas" component={Areas} />
+  <Drawer.Screen name="Perfil" component={Perfil} />
   <Drawer.Screen name="Ajustes" component={Settings} />
   <Drawer.Screen name="Juegos" component={Juegos} />
   <Drawer.Screen name="Salir de Logus" component={Login} options={{
@@ -43,22 +43,22 @@ const MenuItems = ({ navigation }) => {
             <MenuButtonItem
             text='Perfil'
             onPress= { () => navigation.navigate('Perfil') }
-            image={require('../Assets/img/Perfil.png')}
+            image={require('../src/Assets/img/Perfil.png')}
             />
               <MenuButtonItem 
             text='Áreas'
             onPress= { () => navigation.navigate('Areas') }
-            image={require('../Assets/img/Areas.png')}
+            image={require('../src/Assets/img/Areas.png')}
             />
               <MenuButtonItem 
             text='Ajustes'
             onPress= { () => navigation.navigate('Ajustes') }
-            image={require('../Assets/img/Ajustes.png')}
+            image={require('../src/Assets/img/Ajustes.png')}
             />
               <MenuButtonItem 
             text='Juegos'
             onPress= { () => navigation.navigate('Juegos') }
-            image={require('../Assets/img/Juegos.png')}
+            image={require('../src/Assets/img/Juegos.png')}
             />
             </View>
             <View style={ styles.logout }>
@@ -69,7 +69,7 @@ const MenuItems = ({ navigation }) => {
               index: 0,
               routes: [{ name: 'Login' }], 
             }) }
-            image={require('../Assets/img/Salida.png')}
+            image={require('../src/Assets/img/Salida.png')}
             />
             </View>
         </DrawerContentScrollView>

@@ -4,7 +4,10 @@ import { Image } from 'react-native';
 import Register from '../screens/Register'
 import { useNavigation } from "@react-navigation/native";
 
+
 export default function Login(){
+
+    
 
     const navigation = useNavigation(); 
     
@@ -14,10 +17,10 @@ export default function Login(){
         <View style={styles.padre}>
             
             <View>
-                <Image source={require('../Assets/img/Logo.jpeg')} style={styles.profile} />
+                <Image source={require('../src/Assets/img/Logo.jpeg')} style={styles.profile} />
             </View>
             <View>
-                <Text style={styles.textit}>Inicio de Sesión</Text>
+                <Text style={styles.textit}>Bienvenido a Logus</Text>
             </View>
             <View style={styles.card}>
                 <View style={styles.cajatexto}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Touchable, TouchableOpacity, StyleSheet, Image} from 'react-native'
+import { TextStyles } from '../styles/TextStyles';
 
 
 const MenuButtonItem = ({ text, onPress, salida, image, style, ...props }) => {
@@ -22,9 +23,10 @@ const styles = StyleSheet.create ({
         borderRadius:23,
     },
     buttonContainer:{
+        flex:1,
         alignItems:'center',
         backgroundColor:'#996ee5',
-        borderRadius:10,
+        borderRadius:12,
         flexDirection:'row',
         marginBottom:15,
         padding:15,
@@ -32,9 +34,10 @@ const styles = StyleSheet.create ({
     salida:{
       alignItems:'center',
         backgroundColor:'#ac2774',
-        borderRadius:10,
-        marginBottom:15,
+        borderRadius:12,
         padding:15,
+        marginTop: 'auto',
+        marginBottom: 20,
     },
     texto:{
         color:'white',
