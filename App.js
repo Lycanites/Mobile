@@ -7,7 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/Login';
 import Menu from './screens/Menu';
 import Register from './screens/Register';
-import Perfil from './screens/Perfil';
+
+
 
 
 

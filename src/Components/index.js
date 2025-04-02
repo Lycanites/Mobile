@@ -1,0 +1,1 @@
+export {default as Sliders} from '../Components/Sliders'
