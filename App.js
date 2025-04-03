@@ -13,6 +13,12 @@ import Logica from './screens/Logica';
 import Lectura from './screens/Lectura';
 import Cultura from './screens/Cultura';
 import Analisis from './screens/Analisis';
+import Loading from './screens/Loading';
+import Loading1 from './screens/Loading';
+import Loading2 from './screens/Loading2';
+import Loading3 from './screens/Loading3';
+import Loading4 from './screens/Loading4';
+import Loading5 from './screens/Loading5';
 
 export default function App() {
   const isSoundEnabled = true; 
@@ -67,6 +73,31 @@ export default function App() {
         headerShown: false,
       }}/>
       <Stack.Screen name='Analisis' component={Analisis}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='LoadingM' component={Loading1}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='LoadingL' component={Loading2}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='Loadingl' component={Loading3}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='LoadingC' component={Loading4}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='LoadingA' component={Loading5}
         initialParams={{ isSoundEnabled: false }}
       options={{
         headerShown: false,

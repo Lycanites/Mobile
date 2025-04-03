@@ -13,27 +13,27 @@ export default function Juegos(){
         <View style={styles.container}> 
         <Text style={styles.title}>Juegos</Text>
     <TouchableOpacity style={styles.button1}
-        onPress={() => navigation.navigate('Memoria')}>
+        onPress={() => navigation.navigate('LoadingM')}>
     <Image source={require('../src/Assets/img/MiniMemoria.png')} style={styles.logo1}/>
     <Text style={styles.textbutton}>Memoria</Text>
     </TouchableOpacity>
     <TouchableOpacity style={styles.button2}
-      onPress= { () => navigation.navigate('Logica') }>
+      onPress= { () => navigation.navigate('LoadingL') }>
     <Image source={require('../src/Assets/img/MiniLogica.png')} style={styles.logo2}/>
     <Text style={styles.textbutton}>Logica</Text>
     </TouchableOpacity>
     <TouchableOpacity style={styles.button3}
-      onPress= { () => navigation.navigate('Lectura') }>
+      onPress= { () => navigation.navigate('Loadingl') }>
     <Image source={require('../src/Assets/img/MiniLectura.png')} style={styles.logo3}/>
     <Text style={styles.textbutton}>Lectura</Text>
     </TouchableOpacity>
     <TouchableOpacity style={styles.button4}
-      onPress= { () => navigation.navigate('Cultura') }>
+      onPress= { () => navigation.navigate('LoadingC') }>
     <Image source={require('../src/Assets/img/MiniCultura.png')} style={styles.logo4}/>
     <Text style={styles.textbutton}>Cultura</Text>
     </TouchableOpacity>
     <TouchableOpacity style={styles.button5}
-      onPress= { () => navigation.navigate('Analisis') }>
+      onPress= { () => navigation.navigate('LoadingA') }>
     <Image source={require('../src/Assets/img/MiniAnalisis.png')} style={styles.logo5}/>
     <Text style={styles.textbutton}>Analisis</Text>
     </TouchableOpacity>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create ({
   },
     button2:{
         flexDirection:'row',
-        backgroundColor: '#e5883a',
+        backgroundColor: '#se78a3b',
         borderRadius:20,
         paddingVertical:20,
         width:280,

@@ -10,7 +10,7 @@ export default function Logica() {
 
 const styles = StyleSheet.create({
 screen:{
-    backgroundColor:'#e5883a',
+    backgroundColor:'#fe9162',
     flex:1,
 }
     

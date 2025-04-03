@@ -10,7 +10,7 @@ export default function Analisis() {
 
 const styles = StyleSheet.create({
 screen:{
-    backgroundColor:'#1a74c7',
+    backgroundColor:'#7bcbff',
     flex:1,
 }
 })

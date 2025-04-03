@@ -10,7 +10,7 @@ export default function Cultura() {
 
 const styles = StyleSheet.create({
 screen:{
-    backgroundColor:'#6ba02e',
+    backgroundColor:'#ddff8e',
     flex:1,
 }
 })
