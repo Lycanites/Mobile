@@ -9,8 +9,6 @@ import MenuButtonItem from "../src/Components/MenuButtonItem";
 import Login from "./Login";
 import { useSound } from "../src/Components/useSounds";
 
-
-
 const Drawer = createDrawerNavigator()
 
 export default function Menu(){

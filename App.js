@@ -8,6 +8,11 @@ import Login from './screens/Login';
 import Menu from './screens/Menu';
 import Register from './screens/Register';
 import { useSound } from "./src/Components/useSounds";
+import Memoria from './screens/Memoria';
+import Logica from './screens/Logica';
+import Lectura from './screens/Lectura';
+import Cultura from './screens/Cultura';
+import Analisis from './screens/Analisis';
 
 export default function App() {
   const isSoundEnabled = true; 
@@ -40,6 +45,31 @@ export default function App() {
         headerTintColor:'white',
         headerTitleAlign:'center',
         headerStyle:{backgroundColor:'#34008f'}
+      }}/>
+      <Stack.Screen name='Memoria' component={Memoria}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='Logica' component={Logica}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='Lectura' component={Lectura}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='Cultura' component={Cultura}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='Analisis' component={Analisis}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
       }}/>
      </Stack.Navigator>
     )
