@@ -10,6 +10,7 @@ import Login from "./Login";
 import { useSound } from "../src/Components/useSounds";
 
 
+
 const Drawer = createDrawerNavigator()
 
 export default function Menu(){
@@ -25,8 +26,8 @@ export default function Menu(){
   }}
   drawerContent={(props) => <MenuItems {...props} />}
 >
+  <Drawer.Screen name="Perfil" component={Perfil} />  
   <Drawer.Screen name="Areas" component={Areas} />
-  <Drawer.Screen name="Perfil" component={Perfil} />
   <Drawer.Screen name="Ajustes" component={Settings} />
   <Drawer.Screen name="Juegos" component={Juegos} />
   <Drawer.Screen name="Salir de Logus" component={Login} options={{
@@ -41,27 +42,31 @@ const MenuItems = ({ navigation }) => {
     return (
      <DrawerContentScrollView
         style={styles.container}>
-            <Text style={styles.title}>Menú</Text>
+            <Text style={styles.title}>Menu</Text>
             <View style={ styles.menuContainer }>
             <MenuButtonItem
-            text='Perfil'
+            text='Perfil' 
             onPress= { () => navigation.navigate('Perfil') }
             image={require('../src/Assets/img/Perfil.png')}
+            style={styles.texto}
             />
               <MenuButtonItem 
-            text='Áreas'
+            text='Areas'
             onPress= { () => navigation.navigate('Areas') }
             image={require('../src/Assets/img/Areas.png')}
+            style={styles.texto}
             />
               <MenuButtonItem 
             text='Ajustes'
             onPress= { () => navigation.navigate('Ajustes') }
             image={require('../src/Assets/img/Ajustes.png')}
+            style={styles.texto}
             />
               <MenuButtonItem 
             text='Juegos'
             onPress= { () => navigation.navigate('Juegos') }
             image={require('../src/Assets/img/Juegos.png')}
+            style={styles.texto}
             />
             </View>
             <View style={ styles.logout }>
@@ -73,6 +78,7 @@ const MenuItems = ({ navigation }) => {
               routes: [{ name: 'Login' }], 
             }) }
             image={require('../src/Assets/img/Salida.png')}
+            style={styles.texto}
             />
             </View>
         </DrawerContentScrollView>
@@ -98,10 +104,8 @@ const styles = StyleSheet.create ({
 
     title:{
         fontSize:20,
-        fontWeight: 'bold',
+        fontFamily:'CreamBeige',
         marginBottom: 20,
         color: 'white'
-    }
-
-    
+    },
 }) 

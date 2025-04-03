@@ -41,7 +41,8 @@ const styles = StyleSheet.create ({
     },
     texto:{
         color:'white',
-        marginStart:10
+        marginStart:10,
+        fontFamily:'CreamBeige'
     }
 })
 

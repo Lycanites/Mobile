@@ -116,12 +116,10 @@ footerContent:{
 titletext:{
     fontFamily: 'CreamBeige',
     fontSize:35,
-    color:''
 },
 subtext:{
-    fontSize:15,
-    fontFamily:'bond',
-    color:''
+    fontSize:20,
+    fontFamily:'MaryKate',
 },
 paginationContent:{
     flexDirection: 'row',

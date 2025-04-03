@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { StyleSheet,View,Text, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import { StyleSheet,View,Text, TextInput, TouchableOpacity, } from 'react-native';
 import { Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { useSound } from "../src/Components/useSounds";
