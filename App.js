@@ -7,16 +7,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/Login';
 import Menu from './screens/Menu';
 import Register from './screens/Register';
-
-
-
-
+import { useSound } from "./src/Components/useSounds";
 
 export default function App() {
-  
+  const isSoundEnabled = true; 
 
   const Stack = createStackNavigator()
-  
+
   function MyStack() {
     return(
      <Stack.Navigator>
@@ -29,6 +26,7 @@ export default function App() {
           headerStyle:{backgroundColor:'#34008f'}
         }}/>
         <Stack.Screen name='Login' component={Login}
+         initialParams={{ isSoundEnabled: false }}
       options={{
         title:'LOGIN',
         headerTintColor:'white',
@@ -36,6 +34,7 @@ export default function App() {
         headerStyle:{backgroundColor:'#34008f'}
       }}/>
        <Stack.Screen name='Register' component={Register}
+        initialParams={{ isSoundEnabled: false }}
       options={{
         title:'LOGIN',
         headerTintColor:'white',

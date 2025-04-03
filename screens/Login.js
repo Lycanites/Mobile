@@ -3,11 +3,16 @@ import { StyleSheet,View,Text, TextInput, TouchableOpacity, ImageBackground} fro
 import { Image } from 'react-native';
 import Register from '../screens/Register'
 import { useNavigation } from "@react-navigation/native";
+import { useSound } from "../src/Components/useSounds";
+import { useRoute } from '@react-navigation/native';
 
 
 export default function Login(){
 
-    
+    const route = useRoute(); 
+    const { isSoundEnabled } = route.params || {}; 
+
+    useSound(require('../src/Music/backmusic.mp3'), isSoundEnabled);
 
     const navigation = useNavigation(); 
     
@@ -24,10 +29,10 @@ export default function Login(){
             </View>
             <View style={styles.card}>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Usuario o Correo" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Usuario o Correo"  placeholderTextColor="gray" style={{paddingHorizontal:15, color:'gray'}} />
                 </View>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Contraseña" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Contraseña"  placeholderTextColor="gray" style={{paddingHorizontal:15, color:'gray'}} />
                 </View>
                 <View style={styles.padrebutton}>
                     <TouchableOpacity style={styles.button}>

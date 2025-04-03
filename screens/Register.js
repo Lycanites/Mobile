@@ -2,8 +2,15 @@ import { Component } from "react";
 import { StyleSheet,View,Text, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+import { useSound } from "../src/Components/useSounds";
+import { useRoute } from '@react-navigation/native';
 
 export default function Login(){
+
+    const route = useRoute(); 
+    const { isSoundEnabled } = route.params || {};
+    
+        useSound(require('../src/Music/backmusic.mp3'), isSoundEnabled);
 
     const navigation = useNavigation(); 
 
@@ -20,16 +27,16 @@ export default function Login(){
             </View>
             <View style={styles.card}>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Nombre de Usuario" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Nombre de Usuario"  placeholderTextColor="gray" style={{paddingHorizontal:15, color:'gray'}} />
                 </View>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Email" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Email"  placeholderTextColor="gray" style={{paddingHorizontal:15 , color:'gray'}} />
                 </View>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Contraseña" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Contraseña" placeholderTextColor="gray" style={{paddingHorizontal:15, color:'gray'}} />
                 </View>
                 <View style={styles.cajatexto}>
-                    <TextInput placeholder="Confirmar Contraseña" style={{paddingHorizontal:15}} />
+                    <TextInput placeholder="Confirmar Contraseña"  placeholderTextColor="gray" style={{paddingHorizontal:15, color:'gray'}} />
                 </View>
                 <View style={styles.padrebutton}>
                     <TouchableOpacity style={styles.button2}>
@@ -70,7 +77,7 @@ const styles = StyleSheet.create ({
         backgroundColor: 'white',
         borderRadius: 20,
         width:'90%',
-        padding: 20,
+        padding: 17.5,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -81,14 +88,15 @@ const styles = StyleSheet.create ({
         elevation:5
     },
     textit: {
+        fontFamily: 'CreamBeige',
         fontSize: 24,
-        color: 'purple',
+        color: '#34008f',
     },
     cajatexto: {
-        paddingVertical: 20,
+        paddingVertical: 15,
         backgroundColor: '#cccccc40',
-        borderRadius:30,
-        marginVertical:10
+        borderRadius:20,
+        marginVertical:7.5
     },
     padrebutton: {
         alignItems:'center',
@@ -98,14 +106,14 @@ const styles = StyleSheet.create ({
         borderRadius:30,
         paddingVertical:20,
         width:150,
-        marginTop:20
+        marginTop:15
     },
     button2: {
         backgroundColor: 'white',
         borderRadius:20,
         paddingVertical:10,
         width:100,
-        marginTop:14
+        marginTop:10
     },
     textbutton:{
         textAlign:'center',
