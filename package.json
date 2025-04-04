@@ -1,4 +1,4 @@
- {
+{
   "name": "Logus",
   "version": "0.0.1",
   "private": true,
@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/slider": "^4.5.6",
     "@react-navigation/drawer": "^7.3.0",
     "@react-navigation/native": "^7.0.19",
     "@react-navigation/native-stack": "^7.3.3",

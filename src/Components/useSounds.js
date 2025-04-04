@@ -1,21 +1,34 @@
 import { useEffect, useRef } from "react";
+import { Platform } from "react-native";
 import Sound from "react-native-sound";
-import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
+import { useState } from "react";
 
 export const useSound = (file, isSoundEnabled) => {
-  const sound = useRef(null);
+
+  const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    if (!isSoundEnabled) return;
+    if (!isSoundEnabled) return;  
 
-    Sound.setCategory("Playback");
+    
+    Sound.setCategory(Platform.OS === "ios" ? "Playback" : "Ambient");
 
-    const soundPath = resolveAssetSource(file)?.uri || file;
+    
+    if (sound.current) {
+      sound.current.stop();
+      sound.current.release();
+    }
 
-    sound.current = new Sound(soundPath, Sound.MAIN_BUNDLE, (error) => {
+    sound.current = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
       if (!error) {
-        sound.current.setNumberOfLoops(-1); 
-        sound.current.play();
+     
+        sound.current.setNumberOfLoops(-1);  
+        sound.current.setVolume(1); 
+        sound.current.play((playbackError) => {
+          if (playbackError) {
+            console.log("Error reproduciendo el sonido:", playbackError);
+          }
+        });
       } else {
         console.log("Error cargando sonido:", error);
       }
@@ -27,5 +40,6 @@ export const useSound = (file, isSoundEnabled) => {
         sound.current.release();
       }
     };
+
   }, [file, isSoundEnabled]); 
 };

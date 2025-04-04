@@ -8,6 +8,7 @@ import Settings from "./Settings";
 import MenuButtonItem from "../src/Components/MenuButtonItem";
 import Login from "./Login";
 import { useSound } from "../src/Components/useSounds";
+import Modos from "./Modos";
 
 const Drawer = createDrawerNavigator()
 
@@ -27,7 +28,13 @@ export default function Menu(){
   <Drawer.Screen name="Perfil" component={Perfil} />  
   <Drawer.Screen name="Areas" component={Areas} />
   <Drawer.Screen name="Ajustes" component={Settings} />
-  <Drawer.Screen name="Juegos" component={Juegos} />
+  <Drawer.Screen name="Modos" component={Modos} 
+  options={{
+    title:'Juegos',
+    headerTintColor:'white',
+    headerTitleAlign:'center',
+    headerStyle:{backgroundColor:'#34008f'}
+  }} />
   <Drawer.Screen name="Salir de Logus" component={Login} options={{
     drawerLockMode: 'locked-closed'}} />
 </Drawer.Navigator>
@@ -61,8 +68,8 @@ const MenuItems = ({ navigation }) => {
             style={styles.texto}
             />
               <MenuButtonItem 
-            text='Juegos'
-            onPress= { () => navigation.navigate('Juegos') }
+            text='jugar'
+            onPress= { () => navigation.navigate('Modos') }
             image={require('../src/Assets/img/Juegos.png')}
             style={styles.texto}
             />

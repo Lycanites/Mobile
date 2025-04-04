@@ -19,6 +19,7 @@ import Loading2 from './screens/Loading2';
 import Loading3 from './screens/Loading3';
 import Loading4 from './screens/Loading4';
 import Loading5 from './screens/Loading5';
+import Juegos from './screens/Juegos';
 
 export default function App() {
   const isSoundEnabled = true; 
@@ -52,6 +53,14 @@ export default function App() {
         headerTitleAlign:'center',
         headerStyle:{backgroundColor:'#34008f'}
       }}/>
+      <Stack.Screen name='Juegos' component={Juegos}
+      options={{
+        title:'Juegos',
+        headerTintColor:'white',
+        headerTitleAlign:'center',
+        headerStyle:{backgroundColor:'#34008f'}
+      }}
+      />
       <Stack.Screen name='Memoria' component={Memoria}
         initialParams={{ isSoundEnabled: false }}
       options={{
