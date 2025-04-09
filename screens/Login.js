@@ -3,16 +3,10 @@ import { StyleSheet,View,Text, TextInput, TouchableOpacity, ImageBackground} fro
 import { Image } from 'react-native';
 import Register from '../screens/Register'
 import { useNavigation } from "@react-navigation/native";
-import { useSound } from "../src/Components/useSounds";
 import { useRoute } from '@react-navigation/native';
 
 
 export default function Login(){
-
-    const route = useRoute(); 
-    const { isSoundEnabled } = route.params || {}; 
-
-    useSound(require('../src/Music/backmusic.mp3'), isSoundEnabled);
 
     const navigation = useNavigation(); 
     
@@ -71,7 +65,7 @@ const styles = StyleSheet.create ({
     card: {
         margin:20,
         backgroundColor: 'white',
-        borderRadius: 20,
+        borderRadius: 10,
         width:'90%',
         padding: 20,
         shadowColor: '#000',

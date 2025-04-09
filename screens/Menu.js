@@ -1,5 +1,6 @@
+import React from "react";
 import { useState } from "react";
-import { SafeAreaView,StyleSheet,View,Text, Image } from 'react-native';
+import { SafeAreaView,StyleSheet,View,Text, Image} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView} from "@react-navigation/drawer";
 import Areas from "./Areas";
 import Juegos from "./Juegos";
@@ -7,14 +8,13 @@ import Perfil from "./Perfil";
 import Settings from "./Settings";
 import MenuButtonItem from "../src/Components/MenuButtonItem";
 import Login from "./Login";
-import { useSound } from "../src/Components/useSounds";
 import Modos from "./Modos";
+
 
 const Drawer = createDrawerNavigator()
 
 export default function Menu(){
 
-  useSound(require('../src/Music/backmusic.mp3'), true);
 {
     return (    
         <Drawer.Navigator  

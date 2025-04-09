@@ -1,6 +1,8 @@
 import { StyleSheet, View, Text, TouchableOpacity,  } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
+import Fiesta from "./Fiesta";
+
 
 export default function Modos() {
 
@@ -10,7 +12,8 @@ export default function Modos() {
         <View style={styles.content}>
             <View>
                 <Text style={styles.texto}>Modos de Juego</Text>
-            <TouchableOpacity style={styles.botons1}>
+            <TouchableOpacity style={styles.botons1}
+            onPress={() => navigation.navigate('FiestaL')}>
             <Text style={styles.text}>Fiesta</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.botons2}

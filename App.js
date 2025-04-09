@@ -1,28 +1,28 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { StyleSheet,View,Text } from 'react-native';
-import { StatusBar } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import Login from './screens/Login';
 import Menu from './screens/Menu';
 import Register from './screens/Register';
-import { useSound } from "./src/Components/useSounds";
+
 import Memoria from './screens/Memoria';
 import Logica from './screens/Logica';
 import Lectura from './screens/Lectura';
 import Cultura from './screens/Cultura';
 import Analisis from './screens/Analisis';
-import Loading from './screens/Loading';
+
 import Loading1 from './screens/Loading';
 import Loading2 from './screens/Loading2';
 import Loading3 from './screens/Loading3';
 import Loading4 from './screens/Loading4';
 import Loading5 from './screens/Loading5';
 import Juegos from './screens/Juegos';
+import Fiesta from './screens/Fiesta';
 
 export default function App() {
-  const isSoundEnabled = true; 
 
   const Stack = createStackNavigator()
 
@@ -107,6 +107,11 @@ export default function App() {
         headerShown: false,
       }}/>
       <Stack.Screen name='LoadingA' component={Loading5}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='FiestaL' component={Fiesta}
         initialParams={{ isSoundEnabled: false }}
       options={{
         headerShown: false,
