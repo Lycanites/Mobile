@@ -20,7 +20,8 @@ export default function Modos() {
             onPress={() => navigation.navigate('Juegos')}>
             <Text style={styles.text}>Clasico</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.botons3}>
+            <TouchableOpacity style={styles.botons3}
+            onPress={() => navigation.navigate('ZenL')}>
             <Text style={styles.text}>Zen</Text>
             </TouchableOpacity>
             </View>

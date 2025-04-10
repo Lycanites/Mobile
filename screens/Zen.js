@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
 
-export default function Fiesta() {
+export default function Zen() {
         const opacity = useRef(new Animated.Value(1)).current;
            const navigation = useNavigation(); 
       
@@ -25,10 +25,10 @@ export default function Fiesta() {
         }, []);
       
           return(
-              <ImageBackground source={require('../src/Assets/img/Fiesta.jpeg')} resizeMode='cover' style={styles.back}>
+              <ImageBackground source={require('../src/Assets/img/Zen.jpeg')} resizeMode='cover' style={styles.back}>
                   <View style={styles.content}>
       
-                      <Text style={styles.texto}>Modo Fiesta</Text>
+                      <Text style={styles.texto}>Modo Zen</Text>
               <View style={styles.container}>
                 <TouchableOpacity style={styles.buttone}
                 onPress= { () => navigation.navigate('Memoria') }>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create ({
     buttone:{
         width:250,
         alignItems:'center',
-        backgroundColor:'#fd4b7d',
+        backgroundColor:'#aff3ef',
         borderRadius:10,
         height:60,
         justifyContent:'center'
