@@ -2,6 +2,7 @@ import React, {Animated, ImageBackground, StyleSheet, TouchableOpacity, Text, Vi
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export default function Loading2() {
 
@@ -50,11 +51,11 @@ const styles = StyleSheet.create ({ back:{
 },
 texto:{
     fontFamily:'CreamBeige',
-    fontSize:24,
+    fontSize:responsiveFontSize(4),
     color:'#6d2906',
     alignSelf:'center',
-    marginTop:200,
-    marginBottom:40
+    marginTop:120,
+    marginBottom:200
 },
 container:{
     alignItems:'center',
@@ -62,11 +63,11 @@ container:{
     marginBottom:20,
 },
 buttone:{
-    width:250,
+    width:responsiveWidth(70),
     alignItems:'center',
     backgroundColor:'#se78a3b',
     borderRadius:10,
-    height:60,
+    height:responsiveHeight(10),
     justifyContent:'center'
 },
 buttonecontext:{

@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { View, Text, StyleSheet,} from "react-native";
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
+
 
 
 export default function Settings() {
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5"
   },
   title: {
-    fontSize: 24,
+    fontSize:responsiveFontSize(3),
     marginBottom: 30,
     color: "#34008f",
     textAlign: "center",
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   label: {
-    fontSize: 16,
+    fontSize:responsiveFontSize(2.5),
     color: "#34008f",
     marginBottom: 10,
     fontFamily:'CreamBeige',

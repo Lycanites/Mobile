@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, TouchableOpacity,  } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
 import Fiesta from "./Fiesta";
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 
 export default function Modos() {
@@ -34,38 +35,40 @@ content:{
     flex:1,
     alignItems:'center',
     justifyContent:'center',
+    alignContent:'center',
+    
 },
 texto:{
     fontFamily:'CreamBeige',
     marginBottom:30,
-    fontSize:25,
+    fontSize:responsiveFontSize(4),
     color:'#34008f',
     alignSelf:'center',
 },
 botons1:{
-    margin:20,
-    width:200,
-    height:100,
+    alignSelf:'center',
+    width:responsiveWidth(55),
+    height:responsiveHeight(12.5),
     backgroundColor:'#fd5892',
     alignItems:'center',
     justifyContent:'center',
-    marginBottom:40,
+    marginBottom:50,
     borderRadius:20,
 },
 botons2:{
-    margin:20,
-    width:200,
-    height:100,
+    alignSelf:'center',
+    width:responsiveWidth(55),
+    height:responsiveHeight(12.5),
     backgroundColor:'#76ff9a',
     alignItems:'center',
     justifyContent:'center',
-    marginBottom:40,
+    marginBottom:50,
     borderRadius:20,
 },
 botons3:{
-    margin:20,
-    width:200,
-    height:100,
+    alignSelf:'center',
+    width:responsiveWidth(55),
+    height:responsiveHeight(12.5),
     backgroundColor:'#76c8ff',
     alignItems:'center',
     justifyContent:'center',

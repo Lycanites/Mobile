@@ -4,6 +4,7 @@ import { Image } from 'react-native';
 import Register from '../screens/Register'
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 
 export default function Login(){
@@ -57,8 +58,8 @@ const styles = StyleSheet.create ({
     },
 
     profile: {
-        width: 100,
-        height: 100,
+        width:responsiveWidth(45),
+        height:responsiveHeight(10),
         borderRadius: 100,
         borderColor: 'white'
     },
@@ -107,7 +108,8 @@ const styles = StyleSheet.create ({
     },
     textbutton:{
         textAlign:'center',
-        color:'white'
+        color:'white',
+        fontSize:responsiveFontSize(2)
     },
     textbutton2:{
         textAlign:'center',

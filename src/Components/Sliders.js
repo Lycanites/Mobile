@@ -11,6 +11,7 @@ import {
  StyleSheet
 } from "react-native";
 import {data} from '../../data/information'
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 const {width} = Dimensions.get('window')
 
@@ -92,19 +93,19 @@ container:{
     backgroundColor:'white'
 },
 headerContent:{
-    height:'auto',
-    width,
+    height:responsiveHeight(5),
+    width:responsiveWidth(),
     paddingHorizontal: 20,
     justifyContent:'center',
     alignItems:'center',
 },
 imageContent:{
-    width,
-    height: 300,
+    width:responsiveWidth(),
+    height:responsiveHeight(35),
     justifyContent:'center',
     alignItems:'center',
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 20,
+    marginBottom: 20,
 },
 footerContent:{
     height: 'auto',
@@ -115,11 +116,12 @@ footerContent:{
 },
 titletext:{
     fontFamily: 'CreamBeige',
-    fontSize:35,
+    fontSize:responsiveFontSize(4),
 },
 subtext:{
     fontSize:20,
     fontFamily:'MaryKate',
+    textAlign:'justify'
 },
 paginationContent:{
     flexDirection: 'row',
@@ -131,15 +133,16 @@ paginationContent:{
     width
 },
 paginationItem:{
-    width:14,
-    height:14,
+    width:responsiveWidth(4),
+    height:responsiveHeight(2),
     backgroundColor:'#996ee5',
     borderRadius:1.5,
     marginRight:5
 },
 paginationItemActive: {
     backgroundColor: "#34008f",
-    height: 12,
+    height:responsiveHeight(2),
+    width:responsiveWidth(4),
   },
 })
   

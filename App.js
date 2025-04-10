@@ -22,6 +22,8 @@ import Loading5 from './screens/Loading5';
 import Juegos from './screens/Juegos';
 import Fiesta from './screens/Fiesta';
 import Zen from './screens/Zen';
+import ZenJuegos from './screens/ZenJuego';
+import FiestaJuegos from './screens/FiestaJuego';
 
 export default function App() {
 
@@ -117,7 +119,17 @@ export default function App() {
       options={{
         headerShown: false,
       }}/>
+      <Stack.Screen name='FiestaJuego' component={FiestaJuegos}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
       <Stack.Screen name='ZenL' component={Zen}
+        initialParams={{ isSoundEnabled: false }}
+      options={{
+        headerShown: false,
+      }}/>
+      <Stack.Screen name='ZenJuego' component={ZenJuegos}
         initialParams={{ isSoundEnabled: false }}
       options={{
         headerShown: false,

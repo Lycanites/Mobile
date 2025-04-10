@@ -2,6 +2,8 @@ import React, {Animated, ImageBackground, StyleSheet, TouchableOpacity, Text, Vi
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
+import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
+
 
 
 export default function Loading1() {
@@ -47,32 +49,38 @@ export default function Loading1() {
 
 const styles = StyleSheet.create ({
     back:{
-        flex:1,
-    },
-    texto:{
-        fontFamily:'CreamBeige',
-        fontSize:24,
-        color:'#5e0b3c',
-        alignSelf:'center',
-        marginTop:200,
-        marginBottom:40
-    },
-    container:{
-        alignItems:'center',
-        marginTop:250,
-        marginBottom:20,
-    },
-    buttone:{
-        width:250,
-        alignItems:'center',
-        backgroundColor:'#ff8ee1',
-        borderRadius:10,
-        height:60,
-        justifyContent:'center'
-    },
-    buttonecontext:{
-        fontFamily:'CreamBeige',
-        color:'white',
+      flex:1,
+  },
+  texto:{
+      fontFamily:'CreamBeige',
+      fontSize:responsiveFontSize(4),
+      color:'#5e0b3c',
+      alignSelf:'center',
+      marginTop:120,
+      marginBottom:200,
+      justifyContent:'center',
+      marginEnd:35,
+      marginStart:35,
+      textAlign:'center',
+  },
+  container:{
+      alignItems:'center',
+      marginTop:250,
+      marginBottom:20,
+  },
+  buttone:{
+      width:responsiveWidth(70),
+      alignItems:'center',
+      backgroundColor:'#ff8ee1',
+      borderRadius:10,
+      height:responsiveHeight(10),
+      justifyContent:'center',
 
-    }
+  },
+  buttonecontext:{
+      fontFamily:'CreamBeige',
+      color:'white',
+      textAlign:'center'
+
+  }
 })
