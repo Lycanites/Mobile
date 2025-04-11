@@ -1,36 +1,66 @@
-import React, { useRef } from "react";
-import { View, Text, StyleSheet,} from "react-native";
-import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
-
-
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Switch } from "react-native";
+import {
+  playSound,
+  stopSound,
+  isSoundPlaying,
+  setMusicEnabled,
+  getMusicEnabled
+} from "../src/Components/AudioManager";
+import { responsiveFontSize } from "react-native-responsive-dimensions";
 
 export default function Settings() {
-  
-  const SoundFile = useRef()
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  useEffect(() => {
+    const fetchMusicSetting = async () => {
+      const musicEnabled = await getMusicEnabled();
+      setIsEnabled(musicEnabled);
+    };
+    fetchMusicSetting();
+  }, []);
+
+  const toggleSwitch = async () => {
+    const newValue = !isEnabled;
+    setIsEnabled(newValue);
+    await setMusicEnabled(newValue);
+
+    if (newValue) {
+      playSound(); // Reinicia y suena
+    } else {
+      stopSound(); // Se detiene
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Ajustes de Sonido</Text>
 
       <View style={styles.settingRow}>
-        <Text style={styles.label}>Volumen:</Text>
+        <Text style={styles.label}>Musica General:</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#996ee5" }}
+          thumbColor={isEnabled ? "#34008F" : "#f4f3f4"}
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-   container: {
+  container: {
     flex: 1,
     padding: 20,
     backgroundColor: "#f5f5f5"
   },
   title: {
-    fontSize:responsiveFontSize(3),
+    fontSize: responsiveFontSize(3),
     marginBottom: 30,
     color: "#34008f",
     textAlign: "center",
-    fontFamily:'CreamBeige',
+    fontFamily: "CreamBeige"
   },
   settingRow: {
     backgroundColor: "white",
@@ -40,9 +70,9 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   label: {
-    fontSize:responsiveFontSize(2.5),
+    fontSize: responsiveFontSize(2.5),
     color: "#34008f",
     marginBottom: 10,
-    fontFamily:'CreamBeige',
-  },
+    fontFamily: "CreamBeige"
+  }
 });
