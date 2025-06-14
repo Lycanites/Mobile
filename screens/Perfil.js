@@ -1,15 +1,12 @@
 import React from 'react';
-import { StyleSheet,View,Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 
 
+export default function Perfil() {
 
-export default function Perfil(){
 
+  return (
+    <View>
 
-  {}
-  return(
-   <View>
-
-   </View>
-  )
-}
+    </View>
+  )}

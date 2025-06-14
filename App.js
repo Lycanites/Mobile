@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,33 +25,10 @@ import Zen from './screens/Zen';
 import ZenJuegos from './screens/ZenJuego';
 
 import FiestaJuegos from './screens/FiestaJuego';
-import { initSound, playSound, stopSound } from './src/Components/AudioManager';
-import { getMusicEnabled } from './src/Components/MusicControler';
 
 export default function App() {
   const Stack = createStackNavigator();
-
-  useEffect(() => {
-    initSound();
-  }, []);
-
-  const handleStateChange = async (state) => {
-    const route = state.routes[state.index];
-    const routeName = route?.name;
-
-    // Detener música en Login y Register
-    if (routeName === 'Login' || routeName === 'Register') {
-      stopSound();
-      return;
-    }
-
-    // Reproducir o detener según el estado
-    const enabled = await getMusicEnabled();
-    if (enabled) {
-      playSound();
-    } 
-  };
-
+ 
   function MyStack() {
     return (
       <Stack.Navigator>
@@ -69,6 +46,7 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={Login}
+          initialParams={{ isSoundEnabled: false }} 
           options={{
             title: 'LOGIN',
             headerTintColor: 'white',
@@ -79,6 +57,7 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
+          initialParams={{ isSoundEnabled: false }} 
           options={{
             title: 'LOGIN',
             headerTintColor: 'white',
@@ -89,6 +68,7 @@ export default function App() {
         <Stack.Screen
           name="Juegos"
           component={Juegos}
+          initialParams={{ isSoundEnabled: false }} 
           options={{
             title: 'Juegos',
             headerTintColor: 'white',
@@ -213,7 +193,7 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer onStateChange={handleStateChange}>
+    <NavigationContainer>
       <MyStack />
     </NavigationContainer>
   );

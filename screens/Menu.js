@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView } from "@react-navigation/drawer";
 import { initSound, playSound, stopSound } from '../src/Components/AudioManager';
@@ -19,24 +19,6 @@ const Drawer = createDrawerNavigator();
 const NavigationStateHandler = () => {
   const navigationState = useNavigationState(state => state);
 
-  useEffect(() => {
-    if (navigationState) {
-      const routes = navigationState.routes;
-      const currentRoute = routes[routes.length - 1];
-      
-      if (currentRoute?.name === 'Login' || currentRoute?.name === 'Register') {
-        stopSound();
-      } else {
-        // Aquí podrías verificar getMusicEnabled() para decidir si reproducir o no
-        const isMusicEnabled = getMusicEnabled();
-        if (isMusicEnabled) {
-          playSound();
-        }
-      }
-    }
-  }, [navigationState]);
-
-  return null; 
 };
 
 const MenuItems = ({ navigation }) => {
@@ -87,10 +69,6 @@ const MenuItems = ({ navigation }) => {
 };
 
 export default function Menu() {
-  
-  useEffect(() => {
-    initSound();
-  }, []);
 
   return (
     <>

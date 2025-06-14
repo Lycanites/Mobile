@@ -5,7 +5,9 @@ import { useRoute } from '@react-navigation/native';
 import { Image } from "react-native";
 import Memoria from "./Memoria";
 
+
 export default function Juegos(){
+
 
     const navigation = useNavigation(); 
 

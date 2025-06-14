@@ -1,29 +1,14 @@
 import React, {Animated, ImageBackground, StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useEffect,useContext } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { MusicContext } from '../src/Components/MusicContext';
 
 export default function Zen() {
+
         const opacity = useRef(new Animated.Value(1)).current;
            const navigation = useNavigation(); 
-      
-        useEffect(() => {
-          Animated.loop(
-            Animated.sequence([
-              Animated.timing(opacity, {
-                toValue: 0, 
-                duration: 500,
-                useNativeDriver: true,
-              }),
-              Animated.timing(opacity, {
-                toValue: 1,
-                duration: 500,
-                useNativeDriver: true,
-              }),
-            ])
-          ).start();
-        }, []);
       
           return(
               <ImageBackground source={require('../src/Assets/img/Zen.jpeg')} resizeMode='cover' style={styles.back}>

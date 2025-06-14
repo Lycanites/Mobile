@@ -47,13 +47,26 @@ const styles = StyleSheet.create ({
     back:{
         flex:1,
     },
+    prom:{
+        fontFamily:'CreamBeige',
+        textAlign:'center',
+        color:'white'
+    },
+    box:{
+      padding:15,
+      alignItems:'center',
+      marginTop:130,
+      marginHorizontal:15,
+      borderRadius:15,
+      
+    },
     texto:{
         fontFamily:'CreamBeige',
         fontSize:responsiveFontSize(4),
         color:'#97002b',
         alignSelf:'center',
         marginTop:120,
-        marginBottom:200,
+        marginBottom:180,
         justifyContent:'center',
         marginEnd:35,
         marginStart:35,
@@ -62,7 +75,7 @@ const styles = StyleSheet.create ({
     container:{
         alignItems:'center',
         marginTop:250,
-        marginBottom:20,
+        marginBottom:20
     },
     buttone:{
         width:responsiveWidth(70),
