@@ -7,9 +7,10 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const preguntas = [
-  {
+   {
     pregunta: "¿Cuántos huevos duros podría comerse una persona aún con el estómago vacío?",
     opciones: ["Uno", "Ninguno", "Los mas posibles", "Los que quepan en su estomago"],
     correcta: 0,
@@ -66,14 +67,17 @@ export default function Logica() {
   const progress = useRef(new Animated.Value(1)).current;
   const animationRef = useRef(null);
 
-  // Estado con las preguntas que quedan por mostrar (inicialmente todas)
   const [preguntasRestantes, setPreguntasRestantes] = useState(preguntas);
-  // Estado con la pregunta actual (elegida aleatoriamente)
   const [preguntaActual, setPreguntaActual] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [puntos, setPuntos] = useState(0);
 
-  // Función para elegir una pregunta aleatoria del arreglo dado
+  useEffect(() => {
+    const { pregunta } = elegirPreguntaAleatoria(preguntas);
+    setPreguntaActual(pregunta);
+    startTimer();
+  }, []);
+
   const elegirPreguntaAleatoria = (arr) => {
     if (arr.length === 0) return null;
     const indice = Math.floor(Math.random() * arr.length);
@@ -82,7 +86,6 @@ export default function Logica() {
 
   const startTimer = () => {
     progress.setValue(1);
-
     animationRef.current = Animated.timing(progress, {
       toValue: 0,
       duration: DURATION,
@@ -91,68 +94,59 @@ export default function Logica() {
 
     animationRef.current.start(({ finished }) => {
       if (finished) {
-        setShowModal(true);
+        finalizarJuego();
       }
     });
   };
 
-  // Cuando inicia el componente, elegir la primera pregunta aleatoria
-  useEffect(() => {
-    const { pregunta, indice } = elegirPreguntaAleatoria(preguntasRestantes) || {};
-    if (pregunta) {
-      setPreguntaActual(pregunta);
-      startTimer();
+  const finalizarJuego = async () => {
+    try {
+      const clave = "puntaje_logica";
+      const almacenado = await AsyncStorage.getItem(clave);
+      const puntosPrevios = almacenado ? parseInt(almacenado, 10) : 0;
+      const nuevosTotales = puntosPrevios + puntos;
+      await AsyncStorage.setItem(clave, nuevosTotales.toString());
+    } catch (error) {
+      console.error("Error guardando puntos:", error);
     }
-  }, []);
-
-  const reiniciarJuego = () => {
-    if (animationRef.current) {
-      animationRef.current.stop();
-    }
-    setShowModal(false);
-    setPreguntasRestantes(preguntas);
-    setPuntos(0);
-    // Elegir una nueva pregunta al reiniciar
-    const { pregunta, indice } = elegirPreguntaAleatoria(preguntas) || {};
-    setPreguntaActual(pregunta);
-    setTimeout(() => {
-      startTimer();
-    }, 100);
+    setShowModal(true);
   };
 
   const responder = (index) => {
     if (!preguntaActual) return;
+    if (animationRef.current) animationRef.current.stop();
 
     if (index === preguntaActual.correcta) {
-      // Correcta: sumar puntos y reiniciar timer
-      setPuntos((prev) => prev + 1);
-      if (animationRef.current) animationRef.current.stop();
+      const nuevosPuntos = puntos + 1;
+      setPuntos(nuevosPuntos);
 
-      // Quitar la pregunta actual del arreglo restante
       setPreguntasRestantes((prev) => {
-        const newArray = prev.filter(
+        const restantes = prev.filter(
           (p) => p.pregunta !== preguntaActual.pregunta
         );
-
-        // Si no quedan preguntas, mostrar modal de victoria
-        if (newArray.length === 0) {
-          setShowModal(true);
+        if (restantes.length === 0) {
+          finalizarJuego();
           return [];
         }
 
-        // Elegir una nueva pregunta aleatoria del nuevo arreglo
-        const { pregunta } = elegirPreguntaAleatoria(newArray);
+        const { pregunta } = elegirPreguntaAleatoria(restantes);
         setPreguntaActual(pregunta);
-
         startTimer();
-
-        return newArray;
+        return restantes;
       });
     } else {
-      // Incorrecta: mostrar modal
-      if (animationRef.current) animationRef.current.stop();
-      setShowModal(true);
+      finalizarJuego();
     }
+  };
+
+  const reiniciarJuego = () => {
+    if (animationRef.current) animationRef.current.stop();
+    setShowModal(false);
+    setPreguntasRestantes(preguntas);
+    setPuntos(0);
+    const { pregunta } = elegirPreguntaAleatoria(preguntas);
+    setPreguntaActual(pregunta);
+    startTimer();
   };
 
   const widthInterpolated = progress.interpolate({
@@ -195,7 +189,7 @@ export default function Logica() {
         <Text style={styles.marcadorTexto}>Puntos: {puntos}</Text>
       </View>
 
-      <Modal visible={showModal} transparent animationType="fade" onRequestClose={() => {}}>
+      <Modal visible={showModal} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={styles.modalBox}>
             <Text style={styles.modalText}>
@@ -211,11 +205,9 @@ export default function Logica() {
   );
 }
 
+// Tus estilos se conservan
 const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: "#fe9162",
-    flex: 1,
-  },
+  screen: { flex: 1, backgroundColor: "#fe9162" },
   marcador: {
     position: "absolute",
     bottom: 10,
@@ -251,7 +243,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fe9162",
   },
   card: {
-    backgroundColor: "#ffff",
+    backgroundColor: "#fff",
     padding: 30,
     marginTop: 50,
     marginHorizontal: 15,
@@ -269,12 +261,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   opcion: {
-    backgroundColor: "#fff",
+     backgroundColor: "#fff",
     paddingVertical: 20,
     borderRadius: 8,
     marginHorizontal: 130,
     marginLeft: 15,
-    marginTop: 20,
+    marginTop: 10,
   },
   opcionTexto: {
     color: "black",
@@ -299,6 +291,7 @@ const styles = StyleSheet.create({
     fontFamily: "CreamBeige",
     color: "#34008f",
     marginBottom: 15,
+    textAlign: "center",
   },
   boton: {
     backgroundColor: "#34008f",

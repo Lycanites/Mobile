@@ -9,6 +9,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const preguntasOriginal = [
   {
@@ -85,71 +86,121 @@ function shuffle(array) {
 const screenWidth = Dimensions.get("window").width;
 
 export default function Memoria() {
-  const DURATION = 20000;
+  const DURATION = 10000;
+  const OBSERVATION_DELAY = 7000;
+
   const progress = useRef(new Animated.Value(1)).current;
   const animationRef = useRef(null);
+  const timeoutRef = useRef(null);
+
   const [showModal, setShowModal] = useState(false);
   const [puntos, setPuntos] = useState(0);
-  const [preguntas, setPreguntas] = useState(shuffle(preguntasOriginal));
+  const [preguntas, setPreguntas] = useState(() => shuffle(preguntasOriginal));
   const [indicePregunta, setIndicePregunta] = useState(0);
   const [mostrarPregunta, setMostrarPregunta] = useState(false);
+  const [puntajeAcumulado, setPuntajeAcumulado] = useState(0);
 
   const preguntaActual = preguntas[indicePregunta];
 
-  const startTimer = () => {
+  // Cargar puntaje acumulado al iniciar
+  useEffect(() => {
+    const cargarPuntaje = async () => {
+      try {
+        const almacenado = await AsyncStorage.getItem("puntajes");
+        if (almacenado) {
+          const datos = JSON.parse(almacenado);
+          setPuntajeAcumulado(datos["Memoria"] || 0);
+        }
+      } catch (error) {
+        console.error("Error al cargar puntaje acumulado:", error);
+      }
+    };
+    cargarPuntaje();
+  }, []);
+
+  const startTimer = (duration = DURATION) => {
     progress.setValue(1);
     animationRef.current = Animated.timing(progress, {
       toValue: 0,
-      duration: DURATION,
+      duration,
       useNativeDriver: false,
     });
     animationRef.current.start(({ finished }) => {
-      if (finished) setShowModal(true);
+      if (finished) guardarPuntajeYMostrarModal();
     });
   };
 
-  useEffect(() => {
-    if (animationRef.current) animationRef.current.stop();
-    setMostrarPregunta(false);
+  // Guarda el puntaje sumándolo al acumulado y muestra modal
+  const guardarPuntajeYMostrarModal = async () => {
+  try {
+    const almacenado = await AsyncStorage.getItem("puntaje_memoria");
+    const puntajePrevio = almacenado ? parseInt(almacenado) : 0;
+    const nuevoPuntaje = puntajePrevio + puntos;
 
-    const delay = setTimeout(() => {
+    await AsyncStorage.setItem("puntaje_memoria", nuevoPuntaje.toString());
+
+    setPuntajeAcumulado(nuevoPuntaje);
+    setPuntos(0);
+  } catch (error) {
+    console.error("Error al guardar puntaje acumulado:", error);
+  }
+  setShowModal(true);
+};
+
+  // Maneja la visualización de la pregunta y el inicio del temporizador con delay u sin delay
+  const mostrarPreguntaConDelay = (delay) => {
+    setMostrarPregunta(false);
+    if (animationRef.current) animationRef.current.stop();
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
       setMostrarPregunta(true);
       startTimer();
-    }, 7000);
+    }, delay);
+  };
 
-    return () => clearTimeout(delay);
+  // Cuando cambia pregunta, muestra la imagen 7s, luego la pregunta con temporizador 10s
+  useEffect(() => {
+    mostrarPreguntaConDelay(OBSERVATION_DELAY);
+    return () => {
+      if (animationRef.current) animationRef.current.stop();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [indicePregunta]);
 
   const reiniciarJuego = () => {
     if (animationRef.current) animationRef.current.stop();
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
     setShowModal(false);
     setPuntos(0);
     const nuevasPreguntas = shuffle(preguntasOriginal);
     setPreguntas(nuevasPreguntas);
     setIndicePregunta(0);
-    setMostrarPregunta(false);
 
-    // Aquí espera 7 segundos antes de mostrar la pregunta y empezar el temporizador
-    setTimeout(() => {
-      setMostrarPregunta(true);
-      startTimer();
-    }, 7000);
+    mostrarPreguntaConDelay(OBSERVATION_DELAY);
   };
 
   const responder = (index) => {
     if (index === preguntaActual.correcta) {
       setPuntos((prev) => prev + 1);
+
       if (animationRef.current) animationRef.current.stop();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
       const siguiente = indicePregunta + 1;
       if (siguiente < preguntas.length) {
         setIndicePregunta(siguiente);
+        // Mostrar siguiente pregunta SIN delay y con temporizador desde 10s
+        setMostrarPregunta(true);
+        startTimer(DURATION);
       } else {
-        setShowModal(true);
+        guardarPuntajeYMostrarModal();
       }
     } else {
       if (animationRef.current) animationRef.current.stop();
-      setShowModal(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      guardarPuntajeYMostrarModal();
     }
   };
 
@@ -175,9 +226,7 @@ export default function Memoria() {
             )}
           </>
         ) : (
-          <>
-            <Text style={styles.texto}>{preguntaActual.pregunta}</Text>
-          </>
+          <Text style={styles.texto}>{preguntaActual.pregunta}</Text>
         )}
       </View>
 
@@ -230,10 +279,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#5e0b3c",
     elevation: 4,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
   },
   marcadorTexto: {
     fontSize: 16,
@@ -266,8 +311,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#3f003f",
     textAlign: "center",
-    flexWrap: "wrap",
-    flexShrink: 1,
   },
   imagen: {
     width: screenWidth * 0.9,
@@ -280,18 +323,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   opcion: {
-    backgroundColor: "#fff",
+     backgroundColor: "#fff",
     paddingVertical: 20,
     borderRadius: 8,
     marginHorizontal: 130,
     marginLeft: 15,
-    marginTop: 15,
+    marginTop: 10,
   },
   opcionTexto: {
     color: "black",
     fontWeight: "bold",
     textAlign: "center",
-    flexWrap: "wrap",
   },
   modalOverlay: {
     flex: 1,
@@ -316,8 +358,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
-    marginVertical: 5,
-    marginHorizontal: 20,
+    marginTop: 10,
   },
   botonTexto: {
     color: "#fff",

@@ -7,6 +7,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Analisis() {
   const DURATION = 15000;
@@ -30,7 +31,8 @@ export default function Analisis() {
       correcta: 1,
     },
     {
-      pregunta: "Tiene forma de anillo y agua en su interior, todos te lo ofrecen como prenda de amor.",
+      pregunta:
+        "Tiene forma de anillo y agua en su interior, todos te lo ofrecen como prenda de amor.",
       opciones: ["La alianza", "Un vaso", "Una pecera", "Las llaves"],
       correcta: 0,
     },
@@ -50,7 +52,8 @@ export default function Analisis() {
       correcta: 0,
     },
     {
-      pregunta: "Si me miras te miraré, si me tocas te tocaré, pero si te ríes, yo también lo haré.",
+      pregunta:
+        "Si me miras te miraré, si me tocas te tocaré, pero si te ríes, yo también lo haré.",
       opciones: ["Un perro", "Un cuadro", "El espejo", "La sombra"],
       correcta: 2,
     },
@@ -78,7 +81,28 @@ export default function Analisis() {
 
   useEffect(() => {
     if (preguntasAleatorias.length > 0) startTimer();
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.stop();
+      }
+    };
   }, [preguntasAleatorias]);
+
+  // Función para guardar el puntaje en AsyncStorage
+  const guardarPuntaje = async (valor) => {
+    try {
+      // Obtener el puntaje guardado para 'puntaje_analisis'
+      const guardado = await AsyncStorage.getItem("puntaje_analisis");
+      const puntajePrevio = guardado ? parseInt(guardado) : 0;
+
+      // Guardar sólo si el nuevo puntaje es mayor
+      if (valor > puntajePrevio) {
+        await AsyncStorage.setItem("puntaje_analisis", valor.toString());
+      }
+    } catch (error) {
+      console.error("Error guardando puntaje análisis:", error);
+    }
+  };
 
   const startTimer = () => {
     progress.setValue(1);
@@ -92,6 +116,7 @@ export default function Analisis() {
       if (finished) {
         setMensaje("⏳ ¡Perdiste!");
         setShowModal(true);
+        guardarPuntaje(puntos);
       }
     });
   };
@@ -101,19 +126,23 @@ export default function Analisis() {
     if (index === actual.correcta) {
       setPuntos((prev) => prev + 1);
       if (animationRef.current) animationRef.current.stop();
+
       if (indiceActual < preguntasAleatorias.length - 1) {
         setIndiceActual(indiceActual + 1);
+
         setTimeout(() => {
           startTimer();
         }, 100);
       } else {
         setMensaje("🎉 ¡Completaste todas!");
         setShowModal(true);
+        guardarPuntaje(puntos + 1); // Suma 1 porque acabas de aumentar puntos
       }
     } else {
       if (animationRef.current) animationRef.current.stop();
       setMensaje("⏳ ¡Perdiste!");
       setShowModal(true);
+      guardarPuntaje(puntos);
     }
   };
 
@@ -153,6 +182,7 @@ export default function Analisis() {
                 key={index}
                 onPress={() => manejarRespuesta(index)}
                 style={styles.boton}
+                activeOpacity={0.7}
               >
                 <Text style={styles.botonTexto}>{opcion}</Text>
               </TouchableOpacity>
@@ -208,14 +238,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#3f003f",
+    textAlign: "center",
   },
   boton: {
-    backgroundColor: "#fff",
+     backgroundColor: "#fff",
     paddingVertical: 20,
     borderRadius: 8,
     marginHorizontal: 130,
     marginLeft: 15,
-    marginTop: 20,
+    marginTop: 10,
   },
   botonTexto: {
     color: "black",
@@ -248,12 +279,14 @@ const styles = StyleSheet.create({
     padding: 40,
     borderRadius: 20,
     alignItems: "center",
+    maxWidth: "80%",
   },
   modalText: {
     fontSize: 22,
     color: "#34008f",
     marginBottom: 15,
     fontFamily: "CreamBeige",
+    textAlign: "center",
   },
   marcador: {
     position: "absolute",
@@ -273,7 +306,7 @@ const styles = StyleSheet.create({
   },
   marcadorTexto: {
     fontSize: 16,
-    fontFamily:'CreamBeige',
+    fontFamily: "CreamBeige",
     color: "#0a2d68",
     textAlign: "center",
   },

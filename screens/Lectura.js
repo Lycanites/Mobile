@@ -7,6 +7,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const preguntasOriginales = [
   {
@@ -58,7 +59,7 @@ const preguntasOriginales = [
   },
   {
     pregunta:
-      "El Enigma del Relojero: En un rincón oscuro de la ciudad, el Sr. Aldebarán, un experto relojero, recibe un reloj detenido con un tic-tac melancólico. Repararlo será un reto supremo, lleno de misterios y significados ocultos, que lo llevará a buscar la armonía temporal.",
+      "El Enigma del Relojero: En un rincón oscuro de la ciudad, el Sr. Aldebarán, un experto relojero, recibe un reloj detenido con un tic-tac melancólico...",
     opciones: [
       "La causa del tic-tac melancólico del reloj y cómo restaurarlo a su ritmo normal",
       "El origen del reloj y la identidad de su dueño original",
@@ -69,7 +70,7 @@ const preguntasOriginales = [
   },
   {
     pregunta:
-      "La Maraña de las Estrellas: En el vasto cosmos, las estrellas tejen historias interconectadas. Cada luz y su titilar plantean preguntas sobre el universo. Los astrónomos exploran estos enigmas, buscando comprender la inmensidad del espacio.",
+      "La Maraña de las Estrellas: En el vasto cosmos, las estrellas tejen historias interconectadas...",
     opciones: [
       "La dedicación de los astrónomos en su búsqueda del conocimiento",
       "La vastedad y el misterio del cosmos que inspiran asombro",
@@ -80,7 +81,7 @@ const preguntasOriginales = [
   },
   {
     pregunta:
-      "El Éxodo de los Arlequines: Bajo la luz de la luna, los arlequines bailan melodías ancestrales, guiándose hacia un reino oculto donde los sueños y la realidad convergen, deteniendo el tiempo.",
+      "El Éxodo de los Arlequines: Bajo la luz de la luna, los arlequines bailan melodías ancestrales...",
     opciones: [
       "Un bosquejo secreto en las profundidades del bosque",
       "Un gran baile de máscaras",
@@ -131,7 +132,7 @@ const preguntasOriginales = [
   },
   {
     pregunta:
-      "La Ciudad Invisible: Cuenta la leyenda que en un punto lejano del horizonte se oculta una ciudad invisible, revelada solo a quienes poseen un corazón puro. La ciudad es un reflejo de los sueños más profundos de quienes la encuentran, construida con luz y esperanza.",
+      "La Ciudad Invisible: Cuenta la leyenda que en un punto lejano del horizonte se oculta una ciudad invisible...",
     opciones: [
       "Un lugar de redención para los perdidos",
       "Un castillo de cristal lleno de secretos",
@@ -142,7 +143,7 @@ const preguntasOriginales = [
   },
   {
     pregunta:
-      "El Guardián del Faro: En una isla aislada, un viejo farero mantiene viva la luz que guía a los barcos. Aunque la tecnología ha avanzado, el guardián cree que su labor es crucial, pues no es solo la luz la que guía, sino la fe que infunde en los navegantes.",
+      "El Guardián del Faro: En una isla aislada, un viejo farero mantiene viva la luz que guía a los barcos...",
     opciones: [
       "La tradición frente al progreso tecnológico",
       "La importancia de la esperanza y la fe en tiempos difíciles",
@@ -153,7 +154,7 @@ const preguntasOriginales = [
   },
   {
     pregunta:
-      "El Jardín Eterno: En un valle oculto, un jardín florece en toda época del año. Quienes lo visitan sienten una paz indescriptible, como si las flores capturaran y reflejaran los anhelos de sus visitantes, creando un paraíso único para cada persona.",
+      "El Jardín Eterno: En un valle oculto, un jardín florece en toda época del año...",
     opciones: [
       "Sus flores cambian según la temporada",
       "Solo florece para quienes tienen un propósito claro",
@@ -164,7 +165,6 @@ const preguntasOriginales = [
   },
 ];
 
-// Función para mezclar un array (Fisher-Yates shuffle)
 function shuffleArray(array) {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -174,12 +174,10 @@ function shuffleArray(array) {
   return newArray;
 }
 
-// Función para calcular tamaño de fuente según longitud del texto
 function getFontSize(text, maxFont = 18, minFont = 12, maxLength = 120) {
   if (!text) return maxFont;
   if (text.length <= maxLength / 3) return maxFont;
   if (text.length >= maxLength) return minFont;
-
   const size =
     maxFont -
     ((text.length - maxLength / 3) / (maxLength - maxLength / 3)) *
@@ -197,7 +195,6 @@ export default function Lectura() {
   const [preguntas, setPreguntas] = useState([]);
 
   useEffect(() => {
-    // Al iniciar, mezcla las preguntas
     const mezcladas = shuffleArray(preguntasOriginales);
     setPreguntas(mezcladas);
     startTimer();
@@ -210,47 +207,46 @@ export default function Lectura() {
       duration: DURATION,
       useNativeDriver: false,
     });
-
     animationRef.current.start(({ finished }) => {
-      if (finished) {
-        setShowModal(true);
-      }
+      if (finished) setShowModal(true);
     });
   };
 
   const reiniciarJuego = () => {
-    if (animationRef.current) {
-      animationRef.current.stop();
-    }
+    animationRef.current?.stop();
     const mezcladas = shuffleArray(preguntasOriginales);
     setPreguntas(mezcladas);
     setShowModal(false);
     setPreguntaActual(0);
     setPuntaje(0);
-    setTimeout(() => {
-      startTimer();
-    }, 100);
+    setTimeout(startTimer, 100);
   };
 
-  const handleRespuesta = (index) => {
-    if (index === preguntas[preguntaActual].correcta) {
-      setPuntaje((p) => p + 1);
+  const handleRespuesta = async (index) => {
+    const esCorrecta = index === preguntas[preguntaActual].correcta;
+    if (esCorrecta) {
+      const nuevoPuntaje = puntaje + 1;
+      setPuntaje(nuevoPuntaje);
+
+      try {
+        const guardado = await AsyncStorage.getItem("puntaje_lectura");
+        if (!guardado || nuevoPuntaje > parseInt(guardado)) {
+          await AsyncStorage.setItem("puntaje_lectura", nuevoPuntaje.toString());
+        }
+      } catch (e) {
+        console.error("Error guardando el puntaje:", e);
+      }
+
       if (preguntaActual + 1 < preguntas.length) {
         setPreguntaActual(preguntaActual + 1);
-        if (animationRef.current) {
-          animationRef.current.stop();
-        }
+        animationRef.current?.stop();
         startTimer();
       } else {
-        if (animationRef.current) {
-          animationRef.current.stop();
-        }
+        animationRef.current?.stop();
         setShowModal(true);
       }
     } else {
-      if (animationRef.current) {
-        animationRef.current.stop();
-      }
+      animationRef.current?.stop();
       setShowModal(true);
     }
   };
@@ -260,15 +256,13 @@ export default function Lectura() {
     outputRange: ["0%", "100%"],
   });
 
-  // Evitar errores antes de que se cargue el shuffle
   if (preguntas.length === 0) return null;
 
   const pregunta = preguntas[preguntaActual];
-  const preguntaFontSize = getFontSize(pregunta.pregunta, 18, 12, 120);
+  const preguntaFontSize = getFontSize(pregunta.pregunta);
 
   return (
     <View style={styles.screen}>
-      {/* Marcador de puntaje arriba */}
       <View style={styles.marcador}>
         <Text style={styles.marcadorTexto}>Puntos: {puntaje}</Text>
       </View>
@@ -285,27 +279,20 @@ export default function Lectura() {
 
       <View style={styles.opciones}>
         {pregunta.opciones.map((opcion, index) => {
-          const opcionFontSize = getFontSize(opcion, 16, 12, 80);
+          const fontSize = getFontSize(opcion, 16, 12, 80);
           return (
             <TouchableOpacity
               key={index}
               style={styles.opcion}
               onPress={() => handleRespuesta(index)}
             >
-              <Text style={[styles.opcionTexto, { fontSize: opcionFontSize }]}>
-                {opcion}
-              </Text>
+              <Text style={[styles.opcionTexto, { fontSize }]}>{opcion}</Text>
             </TouchableOpacity>
           );
         })}
       </View>
 
-      <Modal
-        visible={showModal}
-        transparent
-        animationType="fade"
-        onRequestClose={() => {}}
-      >
+      <Modal visible={showModal} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={styles.modalBox}>
             <Text style={styles.modalText}>⏳ ¡Perdiste!</Text>
@@ -320,10 +307,7 @@ export default function Lectura() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: "#ffd77f",
-    flex: 1,
-  },
+  screen: { flex: 1, backgroundColor: "#ffd77f" },
   marcador: {
     position: "absolute",
     bottom: 10,
@@ -335,10 +319,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#c18600",
     elevation: 4,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
   },
   marcadorTexto: {
     fontSize: 16,
@@ -359,7 +339,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffd77f",
   },
   card: {
-    backgroundColor: "#ffff",
+    backgroundColor: "#fff",
     padding: 30,
     marginTop: 50,
     marginHorizontal: 15,
@@ -373,11 +353,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   opciones: {
-    marginTop:10,
+    marginTop: 10,
     marginHorizontal: 20,
   },
   opcion: {
-    backgroundColor: "#fff",
+     backgroundColor: "#fff",
     paddingVertical: 20,
     borderRadius: 8,
     marginHorizontal: 130,
@@ -397,7 +377,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalBox: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#fff",
     padding: 30,
     borderRadius: 20,
     alignItems: "center",
