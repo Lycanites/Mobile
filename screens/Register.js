@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Modal,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
@@ -18,8 +20,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Validación sencilla para evitar SQLi, XSS y entradas peligrosas
   const contienePeligroso = (texto) => {
     const regex = /['";<>`]|(script)|(--)/gi;
     return regex.test(texto);
@@ -41,20 +43,20 @@ export default function Register() {
       return;
     }
 
-    // Validación simple email (puedes usar regex más complejos)
     if (!email.includes("@") || !email.includes(".")) {
       setError("Ingresa un correo válido.");
       return;
     }
 
-    // Aquí puedes hacer cifrado de la contraseña si deseas (normalmente en backend)
-    // const encryptedPassword = CryptoJS.SHA256(password).toString();
+    setError("");
+    setLoading(true);
 
-    // Simulación de envío:
-    console.log("Registrar usuario:", { usuario, email, password });
-    setError(""); // limpiar error
-    // navegación a pantalla siguiente, p.ej:
-    // navigation.navigate("Login");
+    // Simula el proceso de registro con 1.5 segundos de carga
+    setTimeout(() => {
+      setLoading(false);
+      // Aquí navegas al Login (ajusta si tienes otro nombre)
+      navigation.navigate("Login");
+    }, 1500);
   };
 
   return (
@@ -110,11 +112,21 @@ export default function Register() {
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
         <View style={styles.padrebutton}>
-          <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          <TouchableOpacity style={styles.button} onPress={handleRegister} disabled={loading}>
             <Text style={styles.textbutton}>Registrarse</Text>
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Modal de carga */}
+      <Modal transparent={true} visible={loading} animationType="fade">
+        <View style={styles.loadingOverlay}>
+          <View style={styles.loadingBox}>
+            <ActivityIndicator size="large" color="#34008f" />
+            <Text style={styles.loadingText}>Cargando...</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -178,5 +190,23 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center",
     marginTop: 10,
+  },
+  loadingOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingBox: {
+    backgroundColor: 'white',
+    padding: 30,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 18,
+    color: '#34008f',
+    fontFamily: 'CreamBeige',
   },
 });

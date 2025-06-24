@@ -85,6 +85,131 @@ const preguntas = [
     opciones: ["Barómetro", "Termómetro", "Higrómetro", "Anemómetro"],
     correcta: 0,
   },
+  {
+    pregunta: "¿Cuál es el océano más grande del mundo?",
+    opciones: ["Atlántico", "Índico", "Pacífico", "Ártico"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Quién pintó la Mona Lisa?",
+    opciones: ["Miguel Ángel", "Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿En qué continente se encuentra Egipto?",
+    opciones: ["Asia", "Europa", "África", "Oceanía"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Cuál es la capital de Australia?",
+    opciones: ["Sídney", "Melbourne", "Canberra", "Perth"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Quién escribió 'Cien años de soledad'?",
+    opciones: ["Pablo Neruda", "Mario Vargas Llosa", "Gabriel García Márquez", "Jorge Luis Borges"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Qué planeta es conocido como el planeta rojo?",
+    opciones: ["Marte", "Júpiter", "Saturno", "Venus"],
+    correcta: 0,
+  },
+  {
+    pregunta: "¿Qué instrumento mide la presión atmosférica?",
+    opciones: ["Barómetro", "Termómetro", "Higrómetro", "Anemómetro"],
+    correcta: 0,
+  },
+  {
+    pregunta: "¿En qué país se encuentra la Torre Eiffel?",
+    opciones: ["Italia", "Francia", "Alemania", "España"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Cuál es el idioma más hablado en el mundo?",
+    opciones: ["Inglés", "Hindi", "Chino mandarín", "Español"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Qué gas es esencial para que respiremos?",
+    opciones: ["Dióxido de carbono", "Nitrógeno", "Oxígeno", "Hidrógeno"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Cuál es la moneda oficial del Reino Unido?",
+    opciones: ["Euro", "Libra esterlina", "Dólar", "Franco"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿En qué año llegó el hombre a la Luna?",
+    opciones: ["1969", "1972", "1959", "1965"],
+    correcta: 0,
+  },
+  {
+    pregunta: "¿Qué animal es el símbolo de la sabiduría en muchas culturas?",
+    opciones: ["León", "Serpiente", "Búho", "Zorro"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Qué país inventó la pólvora?",
+    opciones: ["India", "China", "Egipto", "Grecia"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Qué elemento químico tiene el símbolo 'Au'?",
+    opciones: ["Plata", "Oro", "Cobre", "Azufre"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Cuál es la capital de Canadá?",
+    opciones: ["Toronto", "Vancouver", "Montreal", "Ottawa"],
+    correcta: 3,
+  },
+  {
+    pregunta: "¿Qué órgano del cuerpo humano bombea sangre?",
+    opciones: ["Hígado", "Pulmones", "Cerebro", "Corazón"],
+    correcta: 3,
+  },
+  {
+    pregunta: "¿Qué país tiene forma de bota en un mapa?",
+    opciones: ["España", "Italia", "Grecia", "Portugal"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Cuál es el metal más liviano?",
+    opciones: ["Aluminio", "Mercurio", "Litio", "Cobre"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Cuál es el libro sagrado del Islam?",
+    opciones: ["Biblia", "Torá", "Corán", "Vedas"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Qué continente tiene más países?",
+    opciones: ["Asia", "África", "Europa", "América"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Quién fue el primer presidente de México?",
+    opciones: ["Miguel Hidalgo", "Vicente Guerrero", "Guadalupe Victoria", "Benito Juárez"],
+    correcta: 2,
+  },
+  {
+    pregunta: "¿Qué país organizó los Juegos Olímpicos en 2021?",
+    opciones: ["China", "Japón", "Brasil", "Corea del Sur"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Cuál es el símbolo químico del agua?",
+    opciones: ["O2", "H2O", "CO2", "NaCl"],
+    correcta: 1,
+  },
+  {
+    pregunta: "¿Cuál es el río más largo del mundo?",
+    opciones: ["Amazonas", "Nilo", "Yangtsé", "Misisipi"],
+    correcta: 0,
+  }
 ];
 
 export default function Cultura() {

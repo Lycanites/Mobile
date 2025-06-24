@@ -163,6 +163,132 @@ const preguntasOriginales = [
     ],
     correcta: 2,
   },
+  {
+  pregunta: "Nube es a lluvia como fuego es a:",
+  opciones: ["Viento", "Humo", "Agua", "Sol"],
+  correcta: 1,
+},
+{
+  pregunta: "Corazón es a latido como reloj es a:",
+  opciones: ["Tiempo", "Manecillas", "Tic-tac", "Relojero"],
+  correcta: 2,
+},
+{
+  pregunta: "El sabio calla, el necio:",
+  opciones: ["Espera", "Aprende", "Habla", "Miente"],
+  correcta: 2,
+},
+{
+  pregunta: "La luna refleja la luz del:",
+  opciones: ["Planeta", "Fuego", "Sol", "Mar"],
+  correcta: 2,
+},
+{
+  pregunta: "El faro ilumina como el mapa:",
+  opciones: ["Brilla", "Muestra", "Camina", "Señala"],
+  correcta: 3,
+},
+{
+  pregunta: "Lectura es a mente como ejercicio es a:",
+  opciones: ["Alma", "Cuerpo", "Corazón", "Tiempo"],
+  correcta: 1,
+},
+{
+  pregunta: "Los ojos ven como los oídos:",
+  opciones: ["Escuchan", "Pasan", "Lloran", "Sienten"],
+  correcta: 0,
+},
+{
+  pregunta: "Flor es a pétalo como libro es a:",
+  opciones: ["Tapa", "Letras", "Página", "Idea"],
+  correcta: 2,
+},
+{
+  pregunta: "Ladrillo es a casa como letra es a:",
+  opciones: ["Papel", "Libro", "Escritura", "Texto"],
+  correcta: 1,
+},
+{
+  pregunta: "La brújula guía como el reloj:",
+  opciones: ["Corre", "Mide", "Controla", "Se atrasa"],
+  correcta: 1,
+},
+{
+  pregunta: "Luna es a noche como sol es a:",
+  opciones: ["Tierra", "Estrella", "Día", "Fuego"],
+  correcta: 2,
+},
+{
+  pregunta: "La lluvia moja como el viento:",
+  opciones: ["Seca", "Sopla", "Vuela", "Empuja"],
+  correcta: 1,
+},
+{
+  pregunta: "El lápiz escribe como la tijera:",
+  opciones: ["Pega", "Afila", "Corta", "Mide"],
+  correcta: 2,
+},
+{
+  pregunta: "El fuego quema como el hielo:",
+  opciones: ["Enfría", "Apaga", "Funde", "Brilla"],
+  correcta: 0,
+},
+{
+  pregunta: "La semilla es a planta como la idea es a:",
+  opciones: ["Texto", "Palabra", "Pensamiento", "Obra"],
+  correcta: 3,
+},
+{
+  pregunta: "El pez nada como el ave:",
+  opciones: ["Nada", "Vuela", "Corre", "Nada y vuela"],
+  correcta: 1,
+},
+{
+  pregunta: "El pintor pinta como el músico:",
+  opciones: ["Escribe", "Lee", "Compone", "Canta"],
+  correcta: 2,
+},
+{
+  pregunta: "Un triángulo tiene tres lados como un cuadrado:",
+  opciones: ["Dos", "Tres", "Cuatro", "Cinco"],
+  correcta: 2,
+},
+{
+  pregunta: "Río es a agua como camino es a:",
+  opciones: ["Barro", "Polvo", "Destino", "Pasos"],
+  correcta: 3,
+},
+{
+  pregunta: "La tristeza entristece como la alegría:",
+  opciones: ["Preocupa", "Mueve", "Asusta", "Alegra"],
+  correcta: 3,
+},
+{
+  pregunta: "Llave es a cerradura como código es a:",
+  opciones: ["Texto", "Candado", "Acceso", "Computadora"],
+  correcta: 2,
+},
+{
+  pregunta: "El sol calienta como la luna:",
+  opciones: ["Brilla", "Guía", "Refleja", "Se oculta"],
+  correcta: 2,
+},
+{
+  pregunta: "El pan es a trigo como la leche es a:",
+  opciones: ["Vaca", "Mantequilla", "Queso", "Grano"],
+  correcta: 0,
+},
+{
+  pregunta: "Silencio es a paz como ruido es a:",
+  opciones: ["Guerra", "Desorden", "Miedo", "Fiesta"],
+  correcta: 1,
+},
+{
+  pregunta: "La abeja hace miel como la araña:",
+  opciones: ["Atrapa", "Cose", "Hace red", "Teje"],
+  correcta: 3,
+}
+
 ];
 
 function shuffleArray(array) {

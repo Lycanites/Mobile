@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useRef, useState } from 'react';
 import 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,9 +25,12 @@ import Zen from './screens/Zen';
 import ZenJuegos from './screens/ZenJuego';
 
 import FiestaJuegos from './screens/FiestaJuego';
+import { AudioProvider } from './src/Components/AudioContext';
 
 export default function App() {
   const Stack = createStackNavigator();
+  const navigationRef = useRef();
+  const [currentRoute, setCurrentRoute] = useState('');
  
   function MyStack() {
     return (
@@ -193,9 +196,19 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <AudioProvider currentRoute={currentRoute}>
+      <NavigationContainer   ref={navigationRef}
+    onReady={() => {
+      const initialRoute = navigationRef.current.getCurrentRoute().name;
+      setCurrentRoute(initialRoute);
+    }}
+    onStateChange={() => {
+      const newRoute = navigationRef.current.getCurrentRoute().name;
+      setCurrentRoute(newRoute);
+    }}> 
+        <MyStack />
+      </NavigationContainer>
+    </AudioProvider>
   );
 }
 

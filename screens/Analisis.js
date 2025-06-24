@@ -72,6 +72,132 @@ export default function Analisis() {
       opciones: ["La cascada", "El río", "Las olas", "La nube"],
       correcta: 3,
     },
+    {
+  pregunta: "Mientras más me quitas, más grande soy. ¿Qué soy?",
+  opciones: ["Una deuda", "Una herida", "Un agujero", "Un error"],
+  correcta: 2,
+},
+{
+  pregunta: "Tiene manos pero no puede aplaudir.",
+  opciones: ["Una estatua", "Un reloj", "Una sombra", "Un robot"],
+  correcta: 1,
+},
+{
+  pregunta: "Tiene cabeza pero no tiene cerebro. ¿Qué es?",
+  opciones: ["Un alfiler", "Una cebolla", "Un tornillo", "Una moneda"],
+  correcta: 0,
+},
+{
+  pregunta: "Tiene orejas pero no puede oír.",
+  opciones: ["Una taza", "Una silla", "Una olla", "Un sombrero"],
+  correcta: 2,
+},
+{
+  pregunta: "No tiene alas, pero puede volar. No tiene ojos, pero puede llorar.",
+  opciones: ["El viento", "La nube", "El humo", "La cebolla"],
+  correcta: 1,
+},
+{
+  pregunta: "Tiene dientes pero no muerde.",
+  opciones: ["Una sierra", "Un peine", "Un engranaje", "Una cremallera"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Qué se moja mientras seca?",
+  opciones: ["El trapo", "La esponja", "La toalla", "El papel"],
+  correcta: 2,
+},
+{
+  pregunta: "Va por el aire pero no es ave, y suelta agua sin ser nube.",
+  opciones: ["El rociador", "La manguera", "El avión", "El aspersor"],
+  correcta: 3,
+},
+{
+  pregunta: "Es grande como un elefante, pero no pesa nada.",
+  opciones: ["El eco", "La sombra", "El viento", "El reflejo"],
+  correcta: 1,
+},
+{
+  pregunta: "Tiene piel, pero no siente; tiene hojas, pero no es árbol.",
+  opciones: ["El cuaderno", "El libro", "El periódico", "La revista"],
+  correcta: 1,
+},
+{
+  pregunta: "Ladrón invisible que te roba el tiempo.",
+  opciones: ["El sueño", "El celular", "La pereza", "El reloj"],
+  correcta: 2,
+},
+{
+  pregunta: "Sin alas ni motor, cruza el cielo. Sin ser ave, canta sin boca.",
+  opciones: ["El viento", "El relámpago", "El trueno", "El avión de papel"],
+  correcta: 0,
+},
+{
+  pregunta: "Pasa por el agua y no se moja.",
+  opciones: ["El reflejo", "La luz", "La sombra", "El pensamiento"],
+  correcta: 2,
+},
+{
+  pregunta: "Siempre está en medio del mar pero no puede nadar.",
+  opciones: ["La letra A", "La letra M", "La letra R", "La letra E"],
+  correcta: 1,
+},
+{
+  pregunta: "Va del suelo al cielo, pero no se mueve.",
+  opciones: ["Un árbol", "Una montaña", "Un edificio", "Un poste"],
+  correcta: 1,
+},
+{
+  pregunta: "Tiene agujas pero no cose.",
+  opciones: ["Un reloj", "Una brújula", "Un cactus", "Un puercoespín"],
+  correcta: 0,
+},
+{
+  pregunta: "¿Qué crece cuanto más se le quita?",
+  opciones: ["El silencio", "La deuda", "El agujero", "El misterio"],
+  correcta: 2,
+},
+{
+  pregunta: "Si se cae de una torre no se hace daño.",
+  opciones: ["Una hoja", "Una pluma", "Una sombra", "Un sueño"],
+  correcta: 2,
+},
+{
+  pregunta: "No tiene cuerpo, pero tiene voz.",
+  opciones: ["La radio", "El eco", "La bocina", "El viento"],
+  correcta: 1,
+},
+{
+  pregunta: "Cuanto más la llenas, menos pesa.",
+  opciones: ["Una cesta", "Una red", "Una bolsa de aire", "Un globo"],
+  correcta: 3,
+},
+{
+  pregunta: "Tiene anillos pero no dedos.",
+  opciones: ["Un árbol", "Una cadena", "Un planeta", "Un llavero"],
+  correcta: 0,
+},
+{
+  pregunta: "Está en todas partes y no se puede atrapar.",
+  opciones: ["El pensamiento", "La luz", "El viento", "El aire"],
+  correcta: 3,
+},
+{
+  pregunta: "Tiene llaves pero no abre puertas.",
+  opciones: ["Un candado", "Un piano", "Un saxofón", "Una computadora"],
+  correcta: 1,
+},
+{
+  pregunta: "Tiene cuerdas pero no ata.",
+  opciones: ["Una red", "Una guitarra", "Una marioneta", "Una raqueta"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Qué cosa cuanto más alta es, menos se ve?",
+  opciones: ["La neblina", "La montaña", "La oscuridad", "La nube"],
+  correcta: 2,
+}
+
   ];
 
   useEffect(() => {

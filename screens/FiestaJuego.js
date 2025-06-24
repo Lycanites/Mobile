@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -11,7 +11,7 @@ import {
 
 const DURACION_MAXIMA = 30000; // 30 segundos
 
-const preguntasBase = [ 
+const preguntasBase = [
   {
     pregunta: "Me ves en el agua, pero nunca me mojo.",
     opciones: ["El reflejo", "Un pez", "Un barco", "Las nubes"],
@@ -346,6 +346,8 @@ const preguntasBase = [
 ];
 
 export default function FiestaJuegos() {
+
+
   const [preguntas, setPreguntas] = useState([]);
   const [indice, setIndice] = useState(0);
   const [mostrarImagen, setMostrarImagen] = useState(false);
@@ -357,6 +359,7 @@ export default function FiestaJuegos() {
   const progress = useRef(new Animated.Value(1)).current;
   const timerInterval = useRef(null);
   const animation = useRef(null);
+  
 
   const mezclarArray = (arr) => {
     const array = [...arr];
@@ -373,29 +376,22 @@ export default function FiestaJuegos() {
     setShowModal(true);
   };
 
-  // Manejar la animación y temporizador en paralelo
   const iniciarTemporizador = (duracion) => {
-    // Detener animaciones previas
     if (animation.current) animation.current.stop();
     if (timerInterval.current) clearInterval(timerInterval.current);
 
-    // Reiniciar valor animado
     progress.setValue(1);
     setTiempoRestante(duracion);
 
-    // Animar barra de 1 a 0 en 'duracion' ms
     animation.current = Animated.timing(progress, {
       toValue: 0,
       duration: duracion,
       useNativeDriver: false,
     });
     animation.current.start(({ finished }) => {
-      if (finished) {
-        detenerJuego();
-      }
+      if (finished) detenerJuego();
     });
 
-    // Intervalo para actualizar tiempo restante en pantalla (cada 1 seg)
     timerInterval.current = setInterval(() => {
       setTiempoRestante((prev) => {
         if (prev <= 1000) {
@@ -408,7 +404,6 @@ export default function FiestaJuegos() {
   };
 
   useEffect(() => {
-    // Inicializar preguntas y temporizador
     const aleatorias = mezclarArray(preguntasBase);
     setPreguntas(aleatorias);
     setIndice(0);
@@ -417,7 +412,6 @@ export default function FiestaJuegos() {
     setMostrarImagen(false);
     setMostrarPregunta(false);
 
-    // Mostrar imagen o pregunta en primer ítem
     setTimeout(() => {
       const primera = aleatorias[0];
       if (primera?.imagen) {
@@ -447,7 +441,6 @@ export default function FiestaJuegos() {
     setIndice(indice + 1);
 
     const proxima = preguntas[indice + 1];
-
     if (proxima?.imagen) {
       setMostrarImagen(true);
       setMostrarPregunta(false);
@@ -465,11 +458,8 @@ export default function FiestaJuegos() {
     if (!mostrarPregunta || showModal) return;
 
     const pregunta = preguntas[indice];
-
     if (opcionSeleccionada === pregunta.correcta) {
       setPuntaje((p) => p + 1);
-
-      // Aumentar 7 segundos sin pasar el máximo
       setTiempoRestante((t) => {
         const nuevoTiempo = t + 5000;
         const tiempoAUsar = nuevoTiempo > DURACION_MAXIMA ? DURACION_MAXIMA : nuevoTiempo;
@@ -479,10 +469,7 @@ export default function FiestaJuegos() {
 
       setMostrarPregunta(false);
       setMostrarImagen(false);
-
-      setTimeout(() => {
-        siguientePregunta();
-      }, 500);
+      setTimeout(() => siguientePregunta(), 500);
     } else {
       detenerJuego();
     }
@@ -491,13 +478,16 @@ export default function FiestaJuegos() {
   const reiniciarJuego = () => {
     if (animation.current) animation.current.stop();
     if (timerInterval.current) clearInterval(timerInterval.current);
+
     setShowModal(false);
     setIndice(0);
     setPuntaje(0);
     setMostrarImagen(false);
     setMostrarPregunta(false);
+
     const aleatorias = mezclarArray(preguntasBase);
     setPreguntas(aleatorias);
+
     setTimeout(() => {
       const primera = aleatorias[0];
       if (primera?.imagen) {
@@ -606,13 +596,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     justifyContent: "center",
   },
-  tiempoTexto: {
-    position: "absolute",
-    zIndex: 2,
-    alignSelf: "center",
-    color: "#fff",
-    fontWeight: "bold",
-  },
   barra: {
     height: "100%",
     backgroundColor: "#fd4b7d",
@@ -679,7 +662,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-   modalBox: {
+  modalBox: {
     backgroundColor: "#ffffff",
     padding: 30,
     borderRadius: 20,
@@ -690,10 +673,6 @@ const styles = StyleSheet.create({
     fontFamily: "CreamBeige",
     color: "#34008f",
     marginBottom: 15,
-  },
-  modalPuntaje: {
-    fontSize: 18,
-    marginBottom: 20,
   },
   boton: {
     backgroundColor: "#34008f",

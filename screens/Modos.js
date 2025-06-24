@@ -24,7 +24,7 @@ export default function Modos() {
                     <Text style={styles.text}>Fiesta</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.botons2} onPress={() => navigation.navigate('Juegos')}>
+                <TouchableOpacity style={styles.botons2} onPress={() => handlePress('Juegos')}>
                     <Text style={styles.text}>Clasico</Text>
                 </TouchableOpacity>
 

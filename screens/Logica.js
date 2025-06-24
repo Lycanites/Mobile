@@ -60,6 +60,156 @@ const preguntas = [
     opciones: ["Sin humedad", "Apagada", "A oscuras", "Comprada"],
     correcta: 2,
   },
+  {
+  pregunta: "Si tienes dos manzanas y te dan dos más, ¿cuántas tienes?",
+  opciones: ["2", "3", "4", "5"],
+  correcta: 2,
+},
+{
+  pregunta: "¿Cuál número sigue en la secuencia: 2, 4, 6, 8, ___?",
+  opciones: ["10", "12", "14", "9"],
+  correcta: 0,
+},
+{
+  pregunta: "¿Cuánto es la mitad de 20?",
+  opciones: ["5", "10", "15", "20"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Cuántos lados tiene un triángulo?",
+  opciones: ["2", "3", "4", "5"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Cuántas patas tienen 3 perros?",
+  opciones: ["8", "10", "12", "6"],
+  correcta: 2,
+},
+{
+  pregunta: "Si 5 + 3 = 8, entonces 8 - 3 = ?",
+  opciones: ["3", "5", "8", "6"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Cuál es el número menor entre 14, 11, 19 y 20?",
+  opciones: ["14", "11", "19", "20"],
+  correcta: 1,
+},
+{
+  pregunta: "Si compro 2 dulces a $3 cada uno, ¿cuánto pago?",
+  opciones: ["3", "5", "6", "9"],
+  correcta: 2,
+},
+{
+  pregunta: "¿Cuál es el doble de 9?",
+  opciones: ["18", "16", "19", "20"],
+  correcta: 0,
+},
+{
+  pregunta: "¿Cuántos segundos tiene 1 minuto?",
+  opciones: ["30", "60", "90", "100"],
+  correcta: 1,
+},
+{
+  pregunta: "Si tengo 10 pesos y gasto 4, ¿cuántos me quedan?",
+  opciones: ["4", "5", "6", "10"],
+  correcta: 2,
+},
+{
+  pregunta: "¿Qué número falta: 5, 10, __, 20, 25?",
+  opciones: ["12", "13", "15", "17"],
+  correcta: 2,
+},
+{
+  pregunta: "¿Cuántos ceros tiene el número mil?",
+  opciones: ["1", "2", "3", "4"],
+  correcta: 2,
+},
+{
+  pregunta: "Si 2 x 3 = 6, entonces 3 x 2 = ?",
+  opciones: ["5", "6", "7", "9"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Qué número es el siguiente en la serie? 1, 1, 2, 3, 5, __",
+  opciones: ["6", "7", "8", "9"],
+  correcta: 2,
+},
+{
+  pregunta: "¿Cuántos minutos hay en media hora?",
+  opciones: ["15", "30", "45", "60"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Cuál número es el mayor? 77, 707, 770, 7070",
+  opciones: ["707", "770", "77", "7070"],
+  correcta: 3,
+},
+{
+  pregunta: "Si tengo 3 pares de zapatos, ¿cuántos zapatos tengo?",
+  opciones: ["3", "5", "6", "9"],
+  correcta: 2,
+},
+{
+  pregunta: "Un cuarto de 100 es:",
+  opciones: ["10", "15", "20", "25"],
+  correcta: 3,
+},
+{
+  pregunta: "¿Qué número multiplicado por 0 da siempre 0?",
+  opciones: ["1", "10", "100", "Cualquiera"],
+  correcta: 3,
+},
+{
+  pregunta: "¿Cuál es el número que al sumarle 0 sigue igual?",
+  opciones: ["1", "Cualquiera", "0", "10"],
+  correcta: 1,
+},
+{
+  pregunta: "Si hoy es lunes, ¿qué día será dentro de 3 días?",
+  opciones: ["Martes", "Miércoles", "Jueves", "Viernes"],
+  correcta: 2,
+},
+{
+  pregunta: "Un triángulo tiene 3 lados. ¿Cuántos lados tienen 3 triángulos?",
+  opciones: ["6", "9", "12", "3"],
+  correcta: 1,
+},
+{
+  pregunta: "Si tienes $50 y compras algo de $20, ¿cuánto te sobra?",
+  opciones: ["10", "20", "30", "40"],
+  correcta: 2,
+},
+{
+  pregunta: "¿Cuántos dedos hay en dos manos?",
+  opciones: ["8", "10", "12", "14"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Cuál es el triple de 5?",
+  opciones: ["10", "15", "20", "25"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Qué número falta en esta serie? 100, 90, 80, __, 60",
+  opciones: ["70", "75", "85", "95"],
+  correcta: 0,
+},
+{
+  pregunta: "¿Cuántos días tiene una semana?",
+  opciones: ["5", "6", "7", "8"],
+  correcta: 2,
+},
+{
+  pregunta: "Si tienes 4 billetes de $5, ¿cuánto tienes en total?",
+  opciones: ["15", "20", "25", "10"],
+  correcta: 1,
+},
+{
+  pregunta: "¿Cuántos meses tienen 30 días?",
+  opciones: ["4", "5", "6", "11"],
+  correcta: 3,
+}
 ];
 
 export default function Logica() {
