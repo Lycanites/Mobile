@@ -628,8 +628,8 @@ const styles = StyleSheet.create({
   },
   opcion: {
     backgroundColor: "#fff",
-    paddingVertical: 20,
-    borderRadius: 8,
+    paddingVertical: 17.5,
+    borderRadius: 10,
     marginHorizontal: 130,
     marginLeft: 15,
     marginTop: 10,
@@ -654,7 +654,7 @@ const styles = StyleSheet.create({
   marcadorTexto: {
     fontSize: 16,
     color: "#97002b",
-    fontWeight: "bold",
+    fontFamily:'CreamBeige',
   },
   modalOverlay: {
     flex: 1,

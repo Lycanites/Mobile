@@ -125,9 +125,9 @@ const styles = StyleSheet.create({
   },
   settingRow: {
     backgroundColor: "white",
-    padding: 15,
+    padding: 20,
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 20,
     elevation: 3,
     flexDirection: "row",
     justifyContent: "space-between",

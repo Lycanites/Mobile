@@ -6,11 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  Modal,
-  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { responsiveWidth, responsiveHeight, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
+import CryptoJS from "crypto-js";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -20,7 +19,9 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  const CLAVE_DES = "claveDES123";
+  const CLAVE_AES = "claveAES456"; 
 
   const contienePeligroso = (texto) => {
     const regex = /['";<>`]|(script)|(--)/gi;
@@ -33,7 +34,12 @@ export default function Register() {
       return;
     }
 
-    if (contienePeligroso(usuario) || contienePeligroso(email) || contienePeligroso(password) || contienePeligroso(confirmPassword)) {
+    if (
+      contienePeligroso(usuario) ||
+      contienePeligroso(email) ||
+      contienePeligroso(password) ||
+      contienePeligroso(confirmPassword)
+    ) {
       setError("Entrada no permitida. Usa caracteres válidos.");
       return;
     }
@@ -49,14 +55,17 @@ export default function Register() {
     }
 
     setError("");
-    setLoading(true);
 
-    // Simula el proceso de registro con 1.5 segundos de carga
-    setTimeout(() => {
-      setLoading(false);
-      // Aquí navegas al Login (ajusta si tienes otro nombre)
-      navigation.navigate("Login");
-    }, 1500);
+    // 🔐 Cifrado de campos
+    const usuarioCifrado = CryptoJS.DES.encrypt(usuario, CLAVE_DES).toString();
+    const emailCifrado = CryptoJS.DES.encrypt(email, CLAVE_DES).toString();
+    const passwordCifrado = CryptoJS.AES.encrypt(password, CLAVE_AES).toString();
+
+    console.log("Usuario cifrado:", usuarioCifrado);
+    console.log("Email cifrado:", emailCifrado);
+    console.log("Contraseña cifrada (AES):", passwordCifrado);
+
+    navigation.navigate("Login");
   };
 
   return (
@@ -112,21 +121,11 @@ export default function Register() {
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
         <View style={styles.padrebutton}>
-          <TouchableOpacity style={styles.button} onPress={handleRegister} disabled={loading}>
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.textbutton}>Registrarse</Text>
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* Modal de carga */}
-      <Modal transparent={true} visible={loading} animationType="fade">
-        <View style={styles.loadingOverlay}>
-          <View style={styles.loadingBox}>
-            <ActivityIndicator size="large" color="#34008f" />
-            <Text style={styles.loadingText}>Cargando...</Text>
-          </View>
-        </View>
-      </Modal>
     </View>
   );
 }
@@ -138,7 +137,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
   },
-
   profile: {
     width: responsiveWidth(45),
     height: responsiveHeight(10),
@@ -152,10 +150,7 @@ const styles = StyleSheet.create({
     width: "90%",
     padding: 17.5,
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
@@ -190,23 +185,5 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center",
     marginTop: 10,
-  },
-  loadingOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loadingBox: {
-    backgroundColor: 'white',
-    padding: 30,
-    borderRadius: 20,
-    alignItems: 'center',
-  },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 18,
-    color: '#34008f',
-    fontFamily: 'CreamBeige',
   },
 });
